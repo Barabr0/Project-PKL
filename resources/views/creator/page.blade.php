@@ -14,18 +14,18 @@
 
 {{-- 🔵 BANNER --}}
 <div class="w-full h-48 md:h-64 bg-gray-300 relative">
-    <img src="https://picsum.photos/1200/400?random=1"
+    <img src="{{ $creator->foto ? (str()->startsWith($creator->foto, 'http') ? $creator->foto : asset('storage/' . $creator->foto)) : 'https://picsum.photos/1200/400?random=1' }}"
          class="w-full h-full object-cover">
 
     <div class="absolute -bottom-10 left-10">
-        <img src="https://picsum.photos/100"
+        <img src="{{ $creator->foto ? (str()->startsWith($creator->foto, 'http') ? $creator->foto : asset('storage/' . $creator->foto)) : 'https://ui-avatars.com/api/?name=' . urlencode($creator->name) . '&background=random&size=150' }}"
              class="w-20 h-20 rounded-full border-4 border-white shadow">
     </div>
 </div>
 
 {{-- 🔵 INFO --}}
 <div class="max-w-7xl mx-auto px-4 mt-14">
-    <h1 class="text-2xl font-bold">Scent of Indonesia</h1>
+    <h1 class="text-2xl font-bold">{{ $creator->name }}</h1>
     <p class="text-gray-600 mt-2 max-w-2xl">
         Kreator event yang menghadirkan pengalaman unik mulai dari konser,
         workshop, hingga festival budaya Indonesia.
@@ -41,15 +41,15 @@
 
     <div class="flex gap-6 text-sm font-medium">
 
-        <a href="{{ url('/kreator?status=aktif') }}"
+        <a href="{{ route('creator.page', ['id' => $creator->id, 'status' => 'aktif']) }}"
            class="pb-3 border-b-2
-           {{ $tab == 'aktif' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500' }}">
+           {{ $status == 'aktif' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500' }}">
             Event Aktif
         </a>
 
-        <a href="{{ url('/kreator?status=nonaktif') }}"
+        <a href="{{ route('creator.page', ['id' => $creator->id, 'status' => 'nonaktif']) }}"
            class="pb-3 border-b-2
-           {{ $tab == 'nonaktif' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500' }}">
+           {{ $status == 'nonaktif' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500' }}">
             Event Tidak Aktif
         </a>
 
@@ -59,37 +59,22 @@
 {{-- 🔵 LIST EVENT --}}
 <section class="max-w-7xl mx-auto px-4 py-10">
 
-    @php
-        $events = collect(range(1, 10))->map(function ($i) {
-            return [
-                'name' => "Event $i",
-                'status' => rand(0,1) ? 'aktif' : 'nonaktif'
-            ];
-        });
-
-        // FILTER
-        if(request('status')){
-            $events = $events->where('status', request('status'));
-        }
-    @endphp
-
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
         @forelse ($events as $event)
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
-
-            <img src="https://picsum.photos/400/300?random={{rand(1,100)}}"
-                 class="w-full h-40 object-cover rounded-t-xl">
-
+            <a href="{{route('event.detail', $event->id)}}">
+            <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . $loop->iteration }}"
+            class="w-full h-40 object-cover rounded-t-xl">
+            </a>
             <div class="p-3">
 
                 <h3 class="font-semibold text-sm">
-                    {{ $event['name'] }}
+                    {{ $event->nama_event }}
                 </h3>
 
-                <p class="text-xs mt-1
-                    {{ $event['status'] == 'aktif' ? 'text-green-600' : 'text-gray-400' }}">
-                    {{ $event['status'] == 'aktif' ? 'Aktif' : 'Selesai' }}
+                <p class="text-xs mt-1 text-green-600">
+                    Aktif
                 </p>
 
             </div>

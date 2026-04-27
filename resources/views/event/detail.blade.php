@@ -19,7 +19,7 @@
 
         {{-- IMAGE --}}
         <div class="md:col-span-2">
-            <img src="https://picsum.photos/1000/500" 
+            <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/1000/500' }}" 
                 class="w-full h-64 md:h-96 object-cover rounded-xl shadow">
         </div>
 
@@ -27,26 +27,25 @@
        <div class="bg-white p-5 rounded-xl shadow h-fit sticky top-20">
 
     <h1 class="text-lg font-bold mb-3">
-        Seringai Live in Concert
+        {{ $event->nama_event ?? 'Nama Event' }}
     </h1>
 
     <p class="text-sm text-gray-500 mb-2">
-        📅 20 April 2026
+        📅 {{ $event->tanggal ? \Carbon\Carbon::parse($event->tanggal)->format('d F Y') : '20 April 2026' }}
     </p>
 
     <p class="text-sm text-gray-500 mb-4">
-        📍 Jakarta
+        📍 {{ $event->lokasi ?? 'Jakarta' }}
     </p>
 
     <div class="mb-4">
         <p class="text-xl font-bold text-blue-600">
-            Rp 150.000
+            Rp {{ $event->harga ? number_format($event->harga, 0, ',', '.') : '150.000' }}
         </p>
-    </div>
-
-    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
-        Beli Tiket
-    </button>
+    <a href="{{ route('event.pay', $event->id) }}"
+   class="inline-block w-full text-center bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200">
+    Beli Tiket
+</a>
 
 </div>
 
@@ -60,8 +59,7 @@
         </h2>
 
         <p class="text-gray-700 leading-relaxed text-justify">
-            Konser Seringai menghadirkan pengalaman musik metal yang penuh energi.
-            Nikmati penampilan live yang spektakuler dengan tata panggung terbaik.
+            {{ $event->deskripsi ?? 'Konser Seringai menghadirkan pengalaman musik metal yang penuh energi. Nikmati penampilan live yang spektakuler dengan tata panggung terbaik.' }}
         </p>
 
     </div>
@@ -74,9 +72,9 @@
         </h2>
 
         <ul class="space-y-2 text-sm text-gray-600">
-            <li>🎤 Artis: Seringai</li>
+            <li>🎤 Artis: {{ $event->nama_event ?? 'Seringai' }}</li>
             <li>⏰ Waktu: 19:00 WIB</li>
-            <li>📍 Venue: Jakarta Convention Center</li>
+            <li>📍 Venue: {{ $event->lokasi ?? 'Jakarta Convention Center' }}</li>
         </ul>
 
     </div>

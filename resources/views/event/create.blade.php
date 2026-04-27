@@ -54,11 +54,11 @@
     </style>
 </head>
 <body class="py-10 px-4">
-
-    {{-- BACK BUTTON + HEADER --}}
-    <div class="max-w-3xl mx-auto mb-8 flex items-center gap-4">
-        <a href="{{ url()->previous() }}"
-           class="w-9 h-9 rounded-full glass-card flex items-center justify-center text-slate-400 hover:text-white hover:border-indigo-500 transition border border-white/10">
+    <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="max-w-3xl mx-auto mb-8 flex items-center gap-4">
+            <a href="{{ url()->previous() }}"
+                class="w-9 h-9 rounded-full glass-card flex items-center justify-center text-slate-400 hover:text-white hover:border-indigo-500 transition border border-white/10">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
             </svg>
@@ -75,7 +75,7 @@
         <div class="glass-card rounded-2xl p-6">
             <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">🖼️ Banner Event</h2>
             <label id="upload-zone" class="upload-zone rounded-xl p-12 text-center cursor-pointer block">
-                <input type="file" id="banner-input" class="hidden" accept="image/*">
+                <input type="file" name="gambar" id="banner-input" class="hidden" accept="image/*" required>
                 <div id="upload-placeholder" class="space-y-3">
                     <div class="text-5xl">🖼️</div>
                     <p class="font-semibold text-slate-300">Klik atau drag untuk upload banner</p>
@@ -92,27 +92,35 @@
             {{-- Nama Event --}}
             <div>
                 <label class="block text-sm font-medium text-slate-300 mb-1.5" for="nama-event">Nama Event</label>
-                <input id="nama-event" type="text"
+                <input id="nama-event" name="nama_event" type="text"
                        class="input-style w-full rounded-xl px-4 py-2.5 text-sm"
-                       placeholder="Contoh: Konser Musik 2026">
+                       placeholder="Contoh: Konser Musik 2026" required>
             </div>
 
             {{-- Kategori & Tipe --}}
             <div class="grid sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1.5" for="kategori">Kategori</label>
-                    <select id="kategori" class="input-style w-full rounded-xl px-4 py-2.5 text-sm">
+                    <select id="kategori" name="kategori_id" class="input-style w-full rounded-xl px-4 py-2.5 text-sm" required>
                         <option value="">Pilih Kategori</option>
-                        <option>Musik</option>
-                        <option>Seminar</option>
-                        <option>Workshop</option>
-                        <option>Olahraga</option>
-                        <option>Seni & Budaya</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->nama_kategori }}</option>
+                        @endforeach
                     </select>
                 </div>
+
+            </div>
+
+            {{-- Tanggal --}}
+            <div class="grid sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tipe-event">Tipe Event</label>
-                    <select id="tipe-event" class="input-style w-full rounded-xl px-4 py-2.5 text-sm">
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tanggal-mulai">Tanggal Mulai</label>
+                    <input id="tanggal-mulai" name="tanggal" type="date"
+                           class="input-style w-full rounded-xl px-4 py-2.5 text-sm" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tipe-event">Tipe Event (Opsional)</label>
+                    <select id="tipe-event" name="tipe_event" class="input-style w-full rounded-xl px-4 py-2.5 text-sm">
                         <option value="">Pilih Tipe</option>
                         <option>Offline</option>
                         <option>Online</option>
@@ -121,26 +129,12 @@
                 </div>
             </div>
 
-            {{-- Tanggal --}}
-            <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tanggal-mulai">Tanggal Mulai</label>
-                    <input id="tanggal-mulai" type="date"
-                           class="input-style w-full rounded-xl px-4 py-2.5 text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tanggal-selesai">Tanggal Selesai</label>
-                    <input id="tanggal-selesai" type="date"
-                           class="input-style w-full rounded-xl px-4 py-2.5 text-sm">
-                </div>
-            </div>
-
             {{-- Lokasi --}}
             <div>
                 <label class="block text-sm font-medium text-slate-300 mb-1.5" for="lokasi">Lokasi</label>
-                <input id="lokasi" type="text"
+                <input id="lokasi" name="lokasi" type="text"
                        class="input-style w-full rounded-xl px-4 py-2.5 text-sm"
-                       placeholder="Bandung / Online / Jakarta">
+                       placeholder="Bandung / Online / Jakarta" required>
             </div>
 
             {{-- Harga Tiket --}}
@@ -148,23 +142,22 @@
                 <label class="block text-sm font-medium text-slate-300 mb-1.5" for="harga">Harga Tiket</label>
                 <div class="relative">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">Rp</span>
-                    <input id="harga" type="number" min="0"
+                    <input id="harga" name="harga" type="number" min="0"
                            class="input-style w-full rounded-xl pl-10 pr-4 py-2.5 text-sm"
-                           placeholder="0">
+                           placeholder="0" required>
                 </div>
             </div>
-
-            {{-- Deskripsi --}}
+            
             <div>
                 <label class="block text-sm font-medium text-slate-300 mb-1.5" for="deskripsi">Deskripsi</label>
-                <textarea id="deskripsi" rows="4"
-                          class="input-style w-full rounded-xl px-4 py-2.5 text-sm resize-none"
-                          placeholder="Ceritakan detail tentang event kamu..."></textarea>
+                <textarea id="deskripsi" name="deskripsi" rows="4"
+                class="input-style w-full rounded-xl px-4 py-2.5 text-sm resize-none"
+                          placeholder="Ceritakan detail tentang event kamu..." required></textarea>
             </div>
 
             {{-- BUTTON --}}
             <div class="flex justify-end pt-2">
-                <button id="btn-lanjutkan"
+                <button id="btn-lanjutkan" type="submit"
                         class="btn-primary text-white font-semibold px-8 py-2.5 rounded-xl text-sm flex items-center gap-2">
                     Lanjutkan
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -216,5 +209,6 @@
         });
     </script>
 
+</form>
 </body>
 </html>

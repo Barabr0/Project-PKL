@@ -3,9 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('/');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -14,20 +12,26 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/Jelajah', function () {
-    return view('explore.index');
-})->name('Jelajah');
+Route::get('/Jelajah', [App\Http\Controllers\ExploreController::class, 'index'])->name('Jelajah');
 Route::view('/tiket', 'ticket.index')->name('tiket');
-Route::view('/setting', 'setting.index')->name('pengaturan');
-Route::view('/content-image', 'content-image.index')->name('content-image');
-Route::view('/blog', 'blog.index')->name('blog');
-Route::view('/event-blog', 'event-blog.index')->name('event-blog');
-Route::view('/info-blog', 'info-blog.index')->name('info-blog');
-Route::view('/screen-blog', 'screen-blog.index')->name('screen-blog');
+Route::get('/event/pay/{id}', [App\Http\Controllers\PayController::class, 'eventPay'])->name('event.pay');
+Route::get('/screen/pay/{id}', [App\Http\Controllers\PayController::class, 'screenPay'])->name('screen.pay');
+Route::get('/biodata/{type}/{id}', [App\Http\Controllers\PayController::class, 'biodata'])->name('biodata');
+Route::get('/confirmation/{type}/{id}', [App\Http\Controllers\PayController::class, 'confirmation'])->name('confirmation');
+Route::get('/checkout/{type}/{id}', [App\Http\Controllers\PayController::class, 'checkout'])->name('checkout');
+Route::view('/profile/setting', 'profile.setting')->name('pengaturan');
+Route::get('/content/image', [App\Http\Controllers\ContentsController::class, 'index'])->name('content.image');
+Route::resource('contents', App\Http\Controllers\ContentsController::class)->except(['index', 'show']);
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
+Route::get('/event/blog', [App\Http\Controllers\BlogController::class, 'eventBlog'])->name('event.blog');
+Route::get('/info-blog', [App\Http\Controllers\BlogController::class, 'infoBlog'])->name('info-blog');
+Route::get('/screen/blog', [App\Http\Controllers\BlogController::class, 'screenBlog'])->name('screen.blog');
 Route::view('/bantuan', 'help.index')->name('bantuan');
-Route::view('/event-image', 'event-image.index')->name('event-image');
-Route::view('/screen-page', 'screen-page.index')->name('screen-page');
-Route::view('/creator-page', 'creator-page.index')->name('creator-page');
+Route::get('/event/detail/{id?}', [App\Http\Controllers\EventsController::class, 'show'])->name('event.detail');
+use App\Http\Controllers\ScreenController;
+
+Route::get('/screen/page', [ScreenController::class, 'index'])->name('screen.page');
 Route::get('/switch-mode/{mode}', function ($mode) {
 
     if (!in_array($mode, ['buyer', 'creator'])) {
@@ -39,24 +43,17 @@ Route::get('/switch-mode/{mode}', function ($mode) {
     return back();
 
 })->name('switch.mode');
-Route::get('/kreator', function () {
+Route::prefix('creator')->name('creator.')->group(function () {
+    Route::get('/{id}', [App\Http\Controllers\CreatorController::class, 'page'])->name('page')->middleware('auth');
+    Route::view('/create', 'creator.create')->name('create');
+    
+    Route::get('/event', [App\Http\Controllers\CreatorController::class, 'event'])->name('event');
 
-    if(session('mode') != 'creator'){
-        abort(403); // atau redirect
-    }
-
-    return view('creator-event.index');
-
-})->name('kreator');
-Route::get('/kreator/kelola-akses', function () {
-
-    if(session('mode') != 'creator'){
-        abort(403); // atau redirect
-    }
-
-    return view('accces-creator.index');
-
-})->name('kelola-akses');
+    Route::get('/access', function () {
+        if(session('mode') != 'creator') abort(403);
+        return view('creator.access');
+    })->name('access');
+});
 Route::get('/profile/legal-information', function () {
 
     return view('profile.legal-information');
@@ -67,19 +64,13 @@ Route::get('/profile/bank', function () {
     return view('profile.bank');
 
 })->name('profile.bank');
-Route::get('/event/create', function () {
+Route::resource('event', App\Http\Controllers\EventsController::class)->only(['create', 'store', 'destroy'])->middleware('auth');
 
-    return view('event.create');
 
-})->name('event.create');
-Route::get('/creator-create', function () {
-
-    return view('creator-create.index');
-
-})->name('creator-create');
 Route::get('/biaya', function () {
 
     return view('biaya.index');
 
 })->name('biaya');
+
 require __DIR__.'/auth.php';

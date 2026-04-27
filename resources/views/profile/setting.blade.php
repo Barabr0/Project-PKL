@@ -53,13 +53,7 @@
                     Zona Berbahaya
                 </h2>
 
-                <p class="text-sm text-gray-500 mb-4">
-                    Tindakan ini tidak dapat dibatalkan
-                </p>
-
-                <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                    Tutup Akun
-                </button>
+                @include('profile.partials.delete-user-form')
 
             </div>
 

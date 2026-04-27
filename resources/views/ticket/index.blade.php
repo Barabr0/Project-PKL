@@ -4,7 +4,7 @@
 
 <div class="max-w-7xl mx-auto px-4 py-10" x-data="{ tab: 'aktif' }">
 
-    <h1 class="text-2xl font-bold mb-6">Tiket Saya</h1>
+    <h1 class="text-2xl font-bold mb-6">Tiket</h1>
 
     {{-- TAB --}}
     <div class="border-b flex space-x-6">

@@ -11,11 +11,11 @@
         <div class="flex-1 flex justify-center">
             <div class="flex items-center space-x-10"> 
 
-                <a href="/blog" class="text-white font-semibold hover:text-blue-300">
+                <a href="{{ route('blog') }}" class="text-white font-semibold hover:text-blue-300 {{ request()->routeIs('blog*') ? 'text-blue-400 border-b-2 border-blue-400' : '' }}">
                     BLOG
                 </a>
 
-                <a href="/info-blog" class="text-white font-semibold hover:text-blue-300">
+                <a href="{{ route('info-blog') }}" class="text-white font-semibold hover:text-blue-300 {{ request()->routeIs('info-blog') ? 'text-blue-400 border-b-2 border-blue-400' : '' }}">
                     INFO
                 </a>
 
@@ -23,11 +23,11 @@
                     BANTUAN
                 </a>
 
-                <a href="/event-blog" class="text-white font-semibold hover:text-blue-300">
+                <a href="{{ route('event.blog') }}" class="text-white font-semibold hover:text-blue-300 {{ request()->routeIs('event.blog') ? 'text-blue-400 border-b-2 border-blue-400' : '' }}">
                     EVENT
                 </a>
 
-                <a href="/screen-blog" class="text-white font-semibold hover:text-blue-300">
+                <a href="{{ route('screen.blog') }}" class="text-white font-semibold hover:text-blue-300 {{ request()->routeIs('screen.blog') ? 'text-blue-400 border-b-2 border-blue-400' : '' }}">
                     SCREEN
                 </a>
 

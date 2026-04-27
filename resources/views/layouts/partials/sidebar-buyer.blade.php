@@ -35,9 +35,9 @@
         {{-- ========================= --}}
         {{-- 🟣 MODE CREATOR --}}
         {{-- ========================= --}}
-            <a href="/kreator"
+            <a href="{{ route('creator.event') }}"
                 class="block px-3 py-2 rounded-lg
-                {{ request()->is('kreator') 
+                {{ request()->routeIs('creator.event') 
                     ? 'bg-blue-700 font-medium' 
                     : 'hover:bg-blue-800' }}">
                 Dashboard
@@ -69,9 +69,9 @@
             Informasi Dasar
         </a>
 
-        <a href="/setting"
+        <a href="/profile/setting"
             class="block px-3 py-2 rounded-lg mt-1
-            {{ request()->is('setting') 
+            {{ request()->is('profile/setting') 
                 ? 'bg-blue-700 font-medium' 
                 : 'hover:bg-blue-800' }}">
             Pengaturan

@@ -27,17 +27,6 @@
         @include('profile.partials.update-password-form')
 
     </div>
-
-    <div class="bg-white p-6 rounded-xl shadow-sm border border-red-100">
-
-        <h2 class="text-lg font-semibold mb-4 text-red-500">
-            Zona Bahaya
-        </h2>
-
-        @include('profile.partials.delete-user-form')
-
-    </div>
-
 </div>
 
 @endsection

@@ -41,11 +41,7 @@
         <div x-show="tab==='aktif'">
 
             @php
-                $eventAktif = collect(range(1,5))->map(fn($i)=>[
-                    'name'=>"Event Aktif $i",
-                    'date'=>"20 Apr 2026",
-                    'status'=>"Aktif"
-                ]);
+                $eventAktif = $events;
             @endphp
 
             @if($eventAktif->count())
@@ -55,17 +51,17 @@
                     @foreach($eventAktif as $event)
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
 
-                        <img src="https://picsum.photos/400/300?random={{ rand(1,100) }}"
+                        <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . $loop->iteration }}"
                              class="w-full h-36 object-cover rounded-t-xl">
 
                         <div class="p-4">
 
                             <h3 class="font-semibold text-sm mb-1">
-                                {{ $event['name'] }}
+                                {{ $event->nama_event }}
                             </h3>
 
                             <p class="text-xs text-gray-500 mb-2">
-                                {{ $event['date'] }}
+                                {{ $event->tanggal ? \Carbon\Carbon::parse($event->tanggal)->format('d M Y') : '20 Apr 2026' }}
                             </p>
 
                             <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">
@@ -100,11 +96,7 @@
         <div x-show="tab==='nonaktif'">
 
             @php
-                $eventNon = collect(range(1,3))->map(fn($i)=>[
-                    'name'=>"Event Lama $i",
-                    'date'=>"10 Mar 2026",
-                    'status'=>"Selesai"
-                ]);
+                $eventNon = collect(); // For now empty as we don't have non-aktif status logic yet
             @endphp
 
             @if($eventNon->count())
@@ -114,17 +106,17 @@
                     @foreach($eventNon as $event)
                     <div class="bg-white rounded-xl shadow opacity-80">
 
-                        <img src="https://picsum.photos/400/300?random={{ rand(1,100) }}"
+                        <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . $loop->iteration }}"
                              class="w-full h-36 object-cover rounded-t-xl">
 
                         <div class="p-4">
 
                             <h3 class="font-semibold text-sm mb-1">
-                                {{ $event['name'] }}
+                                {{ $event->nama_event }}
                             </h3>
 
                             <p class="text-xs text-gray-500 mb-2">
-                                {{ $event['date'] }}
+                                {{ $event->tanggal ? \Carbon\Carbon::parse($event->tanggal)->format('d M Y') : '10 Mar 2026' }}
                             </p>
 
                             <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Detail</title>
+    <title>Event Blog</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     @vite('resources/css/app.css')
@@ -24,7 +24,7 @@
 {{-- 🔵 ARTIKEL POPULER --}}
 <section class="max-w-7xl mx-auto px-4 py-6">
 
-    <h2 class="text-xl font-bold mb-4">Artikel Populer</h2>
+    <h2 class="text-xl font-bold mb-4">Event Populer</h2>
 
     <div class="grid md:grid-cols-3 gap-6">
 
@@ -38,11 +38,11 @@
             <div class="p-5">
                 <h3 class="text-lg font-bold mb-2">
                     <a href="{{ $main ? route('blog.show', $main->id) : '#' }}" class="hover:text-blue-600">
-                        {{ $main ? $main->judul : 'Artikel Utama Populer' }}
+                        {{ $main ? $main->nama_event : 'Artikel Utama Event' }}
                     </a>
                 </h3>
                 <p class="text-sm text-gray-500">
-                    {{ $main ? $main->created_at->format('d M Y') : '20 Apr 2026' }} • Admin
+                    {{ $main ? \Carbon\Carbon::parse($main->tanggal)->format('d M Y') : '20 Apr 2026' }} • Admin
                 </p>
             </div>
 
@@ -62,11 +62,11 @@
                 <div>
                     <h3 class="text-sm font-semibold hover:text-blue-600">
                         <a href="{{ route('blog.show', $item->id) }}">
-                            {{ $item->judul }}
+                            {{ $item->nama_event }}
                         </a>
                     </h3>
                     <p class="text-xs text-gray-500">
-                        {{ $item->created_at->format('d M Y') }}
+                        {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
                     </p>
                 </div>
 
@@ -82,7 +82,7 @@
 {{-- 🟣 ARTIKEL PILIHAN --}}
 <section class="max-w-7xl mx-auto px-4 py-6">
 
-    <h2 class="text-xl font-bold mb-4">Artikel Pilihan</h2>
+    <h2 class="text-xl font-bold mb-4">Event Pilihan</h2>
 
     <div class="grid md:grid-cols-3 gap-6">
 
@@ -97,11 +97,11 @@
             <div class="p-4">
                 <h3 class="text-sm font-semibold mb-2 hover:text-blue-600">
                     <a href="{{ route('blog.show', $item->id) }}">
-                        {{ $item->judul }}
+                        {{ $item->nama_event }}
                     </a>
                 </h3>
                 <p class="text-xs text-gray-500">
-                    {{ $item->created_at->format('d M Y') }} • Admin
+                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }} • Admin
                 </p>
             </div>
 
@@ -115,7 +115,7 @@
 {{-- ⚫ ARTIKEL LAINNYA --}}
 <section class="max-w-7xl mx-auto px-4 py-6">
 
-    <h2 class="text-xl font-bold mb-4">Artikel Lainnya</h2>
+    <h2 class="text-xl font-bold mb-4">Event Lainnya</h2>
 
     <div class="space-y-4">
 
@@ -130,11 +130,11 @@
             <div>
                 <h3 class="text-sm font-semibold hover:text-blue-600">
                     <a href="{{ route('blog.show', $item->id) }}">
-                        {{ $item->judul }}
+                        {{ $item->nama_event }}
                     </a>
                 </h3>
                 <p class="text-xs text-gray-500 mt-1">
-                    {{ $item->created_at->format('d M Y') }} • Admin
+                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }} • Admin
                 </p>
             </div>
 

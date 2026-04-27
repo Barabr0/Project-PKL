@@ -27,10 +27,11 @@
 
 <body class="bg-gray-100 antialiased">
 @include('partials-image.navbar')
+@php
+    $item = isset($content) ? $content : (isset($contents) ? $contents->first() : null);
+@endphp
+
 <div class="max-w-7xl mx-auto px-4 mt-6">
-    @php
-        $item = isset($content) ? $content : (isset($contents) ? $contents->first() : null);
-    @endphp
     <img 
         src="{{ $item && $item->gambar ? (str()->startsWith($item->gambar, 'http') ? $item->gambar : asset('storage/' . $item->gambar)) : 'https://picsum.photos/1200/400?random=11' }}" 
         class="w-full h-48 md:h-72 lg:h-96 object-cover rounded-xl shadow"
@@ -51,11 +52,9 @@
 
     {{-- ISI --}}
     <div class="space-y-4 text-gray-700 leading-relaxed text-justify">
-
         <p>
             {{ $item ? $item->deskripsi : 'Deskripsi konten' }}
         </p>
-
     </div>
 
 </section>
