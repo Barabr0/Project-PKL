@@ -14,7 +14,7 @@
 
 {{-- 🔵 BANNER --}}
 <div class="w-full h-48 md:h-64 bg-gray-300 relative">
-    <img src="{{ $creator->foto ? (str()->startsWith($creator->foto, 'http') ? $creator->foto : asset('storage/' . $creator->foto)) : 'https://picsum.photos/1200/400?random=1' }}"
+    <img src="{{ $creator->foto ? (str()->startsWith($creator->foto, 'http') ? $creator->foto : asset('storage/' . $creator->foto)) : asset('storage/images/test.jpg') }}"
          class="w-full h-full object-cover">
 
     <div class="absolute -bottom-10 left-10">
@@ -64,7 +64,7 @@
         @forelse ($events as $event)
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
             <a href="{{route('event.detail', $event->id)}}">
-            <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . $loop->iteration }}"
+            <img src="{{ asset('storage/images/test.jpg') }}"
             class="w-full h-40 object-cover rounded-t-xl">
             </a>
             <div class="p-3">

@@ -42,9 +42,63 @@
     {{ $slot }}
 </main>
 
-{{-- FOOTER --}}
-<footer class="bg-gray-800 text-white text-center py-6 mt-10">
-    <p>© 2026 MyEvent. All rights reserved.</p>
+
+<footer class="bg-gray-900 text-gray-300">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+        
+        <!-- Brand -->
+        <div class="col-span-2">
+            <h2 class="text-white text-xl font-bold mb-4">NamaWeb</h2>
+            <p class="text-sm">
+                Platform event dan ticketing terbaik untuk pengalaman kamu.
+            </p>
+        </div>
+
+        <!-- Kolom 1 -->
+        <div>
+            <h3 class="text-white font-semibold mb-3">Produk</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-white">Buat Event</a></li>
+                <li><a href="#" class="hover:text-white">Cari Event</a></li>
+                <li><a href="#" class="hover:text-white">Promo</a></li>
+            </ul>
+        </div>
+
+        <!-- Kolom 2 -->
+        <div>
+            <h3 class="text-white font-semibold mb-3">Perusahaan</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-white">Tentang Kami</a></li>
+                <li><a href="#" class="hover:text-white">Karir</a></li>
+                <li><a href="#" class="hover:text-white">Blog</a></li>
+            </ul>
+        </div>
+
+        <!-- Kolom 3 -->
+        <div>
+            <h3 class="text-white font-semibold mb-3">Bantuan</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-white">FAQ</a></li>
+                <li><a href="#" class="hover:text-white">Kontak</a></li>
+                <li><a href="#" class="hover:text-white">Syarat & Ketentuan</a></li>
+            </ul>
+        </div>
+
+        <!-- Kolom 4 -->
+        <div>
+            <h3 class="text-white font-semibold mb-3">Ikuti Kami</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-white">Instagram</a></li>
+                <li><a href="#" class="hover:text-white">Twitter</a></li>
+                <li><a href="#" class="hover:text-white">Facebook</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="border-t border-gray-700 text-center py-4 text-sm">
+        © {{ date('Y') }} NamaWeb. All rights reserved. 
+    </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

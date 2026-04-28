@@ -1,3 +1,4 @@
+@use('Illuminate\Support\Str')
 <x-app-layout>
 <section class="max-w-7xl mx-auto px-4 pt-6 overflow-hidden">
   <div class="swiper heroSwiper w-full relative shadow-lg">
@@ -5,7 +6,7 @@
       @foreach($contents as $content)
       <div class="swiper-slide">
         <a href="{{ route('content.image') }}">
-          <img src="{{ $content->gambar ? (\Illuminate\Support\Str::startsWith($content->gambar, 'http') ? $content->gambar : asset('storage/' . $content->gambar)) : 'https://picsum.photos/1200/400?random=' . $content->id }}" alt="{{ $content->judul }}" class="w-full h-48 md:h-72 lg:h-96 object-cover">
+          <img src="{{ asset('storage/images/test.jpg') }}" alt="{{ $content->judul }}" class="w-full h-48 md:h-72 lg:h-96 object-cover">
         </a>
       </div>
       @endforeach
@@ -24,7 +25,7 @@
       <div class="swiper-slide !w-56">
         <div class="bg-white rounded-xl shadow hover:shadow-xl transition h-full">
           <a href="{{ route('event.detail', $event->id) }}">
-            <img src="{{ $event->gambar ? (\Illuminate\Support\Str::startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . $event->id }}" class="w-full h-32 object-cover">
+            <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-32 object-cover">
             <div class="p-3"><h3 class="font-semibold text-sm">{{ $event->nama_event }}</h3></div>
           </a>
         </div>
@@ -41,12 +42,7 @@
         
 <div class="max-w-7xl mx-auto px-4 mt-6">
   <a href="{{ route('content.image') }}">
-    @php $firstContent = $contents->first(); @endphp
-    <img 
-        src="{{ $firstContent && $firstContent->gambar ? (\Illuminate\Support\Str::startsWith($firstContent->gambar, 'http') ? $firstContent->gambar : asset('storage/' . $firstContent->gambar)) : 'https://picsum.photos/1200/400?random=11' }}" 
-        class="w-full h-48 md:h-72 lg:h-96 object-cover rounded-xl shadow"
-        alt="Banner"
-    >
+        <img src="{{ asset('storage/images/test.jpg') }}" alt="Banner" class="w-full h-48 md:h-72 lg:h-96 object-cover rounded-xl shadow">
   </a>
 </div>
 
@@ -109,7 +105,7 @@
       <div class="bg-white rounded-lg p-10 w-80 md:w-96 relative shadow flex-shrink-0">
         <div class="absolute -top-5 -left-5 bg-yellow-400 text-white text-xs px-4 py-2 rounded-full">{{ $key + 1 }}</div>
         <a href="{{ route('event.detail', $event->id) }}">
-        <img src="{{ $event->gambar ? (\Illuminate\Support\Str::startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . ($event->id + 10) }}" class="w-full h-32 object-cover">
+        <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-32 object-cover">
         </a>
       </div>
       @empty
@@ -136,8 +132,7 @@
 
                         <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
 
-                            <img src="{{ $kategori->gambar ? (\Illuminate\Support\Str::startsWith($kategori->gambar, 'http') ? $kategori->gambar : asset('storage/' . $kategori->gambar)) : 'https://picsum.photos/400/300?random=' . ($kategori->id + 20) }}"
-                                 class="w-full h-32 object-cover">
+                            <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-32 object-cover">
 
                             <div class="p-3">
                                 <h3 class="text-sm font-semibold capitalize">
@@ -185,7 +180,7 @@
         <div class="swiper-slide !w-56">
           <div class="bg-white rounded-xl shadow hover:shadow-xl transition h-full">
             <a href="{{ route('event.detail', $event->id) }}">
-            <img src="{{ $event->gambar ? (\Illuminate\Support\Str::startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . ($event->id + 30) }}" class="w-full h-32 object-cover">
+            <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-32 object-cover">
             </a>
             <div class="p-3"><h3 class="font-semibold text-sm">{{ $event->nama_event }}</h3></div>
           </div>
@@ -260,7 +255,7 @@
       <div class="swiper-slide !w-56">
         <div class="bg-white rounded-xl shadow hover:shadow-xl transition h-full">
           <a href="{{ route('event.detail', $event->id) }}">
-            <img src="{{ $event->gambar ? (\Illuminate\Support\Str::startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . ($event->id + 50) }}" class="w-full h-32 object-cover">
+            <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-32 object-cover">
           </a>
           <div class="p-3"><h3 class="font-semibold text-sm">{{ $event->nama_event }}</h3></div>
         </div>
@@ -324,8 +319,7 @@
 
                     <div class="bg-white rounded-xl shadow hover:shadow-xl transition h-full overflow-hidden border">
                         <a :href="event.url">
-                            <img :src="event.gambar || 'https://picsum.photos/400/300?random=' + event.id" 
-                                 class="w-full h-32 object-cover">
+                            <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-32 object-cover">
                         </a>
 
                         <div class="p-3">

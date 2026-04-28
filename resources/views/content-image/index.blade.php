@@ -32,7 +32,7 @@
         $item = isset($content) ? $content : (isset($contents) ? $contents->first() : null);
     @endphp
     <img 
-        src="{{ $item && $item->gambar ? (str()->startsWith($item->gambar, 'http') ? $item->gambar : asset('storage/' . $item->gambar)) : 'https://picsum.photos/1200/400?random=11' }}" 
+        src="{{ asset('storage/images/test.jpg') }}" 
         class="w-full h-48 md:h-72 lg:h-96 object-cover rounded-xl shadow"
         alt="{{ $item ? $item->judul : 'Banner' }}"
     >

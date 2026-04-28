@@ -62,7 +62,7 @@
                 {{-- EMPTY STATE --}}
                 <div class="bg-white rounded-xl shadow p-10 text-center">
 
-                    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png"
+                    <img src="{{ asset('storage/images/test.jpg') }}"
                          class="w-20 mx-auto mb-4 opacity-70">
 
                     <p class="text-gray-500 mb-4">Belum ada event aktif</p>

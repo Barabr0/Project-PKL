@@ -51,7 +51,7 @@
                     @foreach($eventAktif as $event)
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
 
-                        <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . $loop->iteration }}"
+                        <img src="{{ asset('storage/images/test.jpg') }}"
                              class="w-full h-36 object-cover rounded-t-xl">
 
                         <div class="p-4">
@@ -106,7 +106,7 @@
                     @foreach($eventNon as $event)
                     <div class="bg-white rounded-xl shadow opacity-80">
 
-                        <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/400/300?random=' . $loop->iteration }}"
+                        <img src="{{ asset('storage/images/test.jpg') }}"
                              class="w-full h-36 object-cover rounded-t-xl">
 
                         <div class="p-4">

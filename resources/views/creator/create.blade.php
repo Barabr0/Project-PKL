@@ -24,7 +24,7 @@
         {{-- 🖼 BACKGROUND --}}
         <div class="absolute inset-0">
             <img 
-                src="{{ $banner ?? 'https://picsum.photos/1200/500?random=2' }}"
+                src="{{ $banner ?? asset('storage/images/test.jpg') }}"
                 class="w-full h-full object-cover transition-transform duration-300"
             >
             <div class="absolute inset-0 bg-black/50"></div>

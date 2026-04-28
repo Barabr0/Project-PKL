@@ -32,7 +32,7 @@
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
         
         {{-- BANNER --}}
-        <img src="{{ $content->gambar ? (\Illuminate\Support\Str::startsWith($content->gambar, 'http') ? $content->gambar : asset('storage/' . $content->gambar)) : 'https://picsum.photos/1200/600' }}" 
+        <img src="{{ asset('storage/images/test.jpg') }}" 
             class="w-full h-64 md:h-96 object-cover" alt="{{ $content->judul }}">
 
         <div class="p-6 md:p-10">

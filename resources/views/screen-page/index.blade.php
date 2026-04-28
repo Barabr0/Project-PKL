@@ -15,9 +15,8 @@
 {{-- 🔥 HERO (BACKGROUND + POSTER) --}}
 <div class="relative">
 
-    {{-- BACKGROUND BLUR --}}
     <div class="absolute inset-0">
-        <img src="https://picsum.photos/1200/600"
+        <img src="{{ asset('storage/images/test.jpg') }}"
             class="w-full h-full object-cover blur-md opacity-40">
     </div>
 
@@ -26,7 +25,7 @@
 
         {{-- POSTER --}}
         <div>
-            <img src="https://picsum.photos/400/600"
+            <img src="{{ asset('storage/images/test.jpg') }}"
                 class="rounded-xl shadow-lg">
         </div>
 
@@ -78,7 +77,7 @@
         @for ($i = 1; $i <= 6; $i++)
         <div class="min-w-[120px] text-center">
 
-            <img src="https://picsum.photos/200/200?random={{$i}}"
+            <img src="{{ asset('storage/images/test.jpg') }}"
                 class="w-24 h-24 rounded-full object-cover mx-auto">
 
             <p class="text-sm mt-2">Actor {{$i}}</p>

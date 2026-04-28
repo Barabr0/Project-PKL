@@ -11,7 +11,7 @@
 
     <!-- Banner -->
     <div class="rounded-xl overflow-hidden mb-6 h-64 md:h-96">
-        <img src="{{ $gambar }}" class="w-full h-full object-cover">
+        <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-full object-cover">
     </div>
 
     <!-- Judul -->

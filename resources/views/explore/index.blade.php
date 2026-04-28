@@ -71,7 +71,7 @@
 
                 <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
                     <a href="{{ route('event.detail', $event->id) }}">
-                        <img src="{{ $event->gambar }}"
+                        <img src="{{ asset('storage/images/test.jpg') }}"
                              class="w-full h-32 object-cover">
 
                         <div class="p-3">

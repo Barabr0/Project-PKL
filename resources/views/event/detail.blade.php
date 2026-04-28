@@ -19,7 +19,7 @@
 
         {{-- IMAGE --}}
         <div class="md:col-span-2">
-            <img src="{{ $event->gambar ? (str()->startsWith($event->gambar, 'http') ? $event->gambar : asset('storage/' . $event->gambar)) : 'https://picsum.photos/1000/500' }}" 
+            <img src="{{ asset('storage/images/test.jpg') }}" 
                 class="w-full h-64 md:h-96 object-cover rounded-xl shadow">
         </div>
 

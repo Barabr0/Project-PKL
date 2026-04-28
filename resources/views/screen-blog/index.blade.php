@@ -29,7 +29,7 @@
 
             {{-- BESAR --}}
             <div class="md:col-span-2 bg-white rounded-xl shadow">
-                <img src="https://picsum.photos/800/400" class="w-full h-60 object-cover rounded-t-xl">
+                <img src="{{ asset('storage/images/test.jpg') }}" class="w-full h-60 object-cover rounded-t-xl">
                 <div class="p-4">
                     <h3 class="font-bold">Artikel Utama Screen</h3>
                 </div>
@@ -39,7 +39,7 @@
             <div class="space-y-3">
                 @for ($i=1; $i<=3; $i++)
                 <div class="flex gap-3 bg-white p-3 rounded-xl shadow">
-                    <img src="https://picsum.photos/200/150?random={{$i}}" class="w-20 h-20 rounded object-cover">
+                <img src="{{ asset('storage/images/test.jpg') }}" class="w-20 h-20 rounded object-cover">
                     <p class="text-sm font-medium">Screen {{$i}}</p>
                 </div>
                 @endfor
@@ -55,7 +55,7 @@
         <div class="grid md:grid-cols-3 gap-6">
             @for ($i=1; $i<=6; $i++)
             <div class="bg-white rounded-xl shadow">
-                <img src="https://picsum.photos/400/300?random={{$i}}" class="h-40 w-full object-cover rounded-t-xl">
+                <img src="{{ asset('storage/images/test.jpg') }}" class="h-40 w-full object-cover rounded-t-xl">
                 <div class="p-3">
                     <p class="text-sm font-semibold">Screen {{$i}}</p>
                 </div>
@@ -71,7 +71,7 @@
         <div class="space-y-4">
             @for ($i=1; $i<=5; $i++)
             <div class="flex gap-4 bg-white p-3 rounded-xl shadow">
-                <img src="https://picsum.photos/200/150?random={{$i}}" class="w-28 h-20 rounded object-cover">
+                <img src="{{ asset('storage/images/test.jpg') }}" class="w-28 h-20 rounded object-cover">
                 <p class="text-sm font-semibold">Screen {{$i}}</p>
             </div>
             @endfor

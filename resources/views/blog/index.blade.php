@@ -31,7 +31,7 @@
         {{-- 🔥 CARD BESAR --}}
         <div class="md:col-span-2 bg-white rounded-xl shadow overflow-hidden">
             <a href="{{ $main ? route('blog.show', $main->id) : '#' }}">
-                <img src="{{ $main && $main->gambar ? (\Illuminate\Support\Str::startsWith($main->gambar, 'http') ? $main->gambar : asset('storage/' . $main->gambar)) : 'https://picsum.photos/800/400?random=1' }}" 
+                <img src="{{ asset('storage/images/test.jpg') }}" 
                     class="w-full h-60 object-cover hover:scale-105 transition duration-300">
             </a>
 
@@ -55,7 +55,7 @@
             <div class="flex gap-3 bg-white p-3 rounded-xl shadow overflow-hidden">
 
                 <a href="{{ route('blog.show', $item->id) }}" class="flex-shrink-0">
-                    <img src="{{ $item->gambar ? (\Illuminate\Support\Str::startsWith($item->gambar, 'http') ? $item->gambar : asset('storage/' . $item->gambar)) : 'https://picsum.photos/200/150?random=' . $loop->iteration }}" 
+                    <img src="{{ asset('storage/images/test.jpg') }}" 
                         class="w-20 h-20 object-cover rounded hover:opacity-80 transition">
                 </a>
 
@@ -90,7 +90,7 @@
         <div class="bg-white rounded-xl shadow overflow-hidden">
 
             <a href="{{ route('blog.show', $item->id) }}">
-                <img src="{{ $item->gambar ? (\Illuminate\Support\Str::startsWith($item->gambar, 'http') ? $item->gambar : asset('storage/' . $item->gambar)) : 'https://picsum.photos/400/300?random=' . $loop->iteration + 20 }}" 
+                <img src="{{ asset('storage/images/test.jpg') }}" 
                     class="w-full h-40 object-cover hover:scale-105 transition duration-300">
             </a>
 
@@ -123,7 +123,7 @@
         <div class="flex gap-4 bg-white p-4 rounded-xl shadow overflow-hidden">
 
             <a href="{{ route('blog.show', $item->id) }}" class="flex-shrink-0">
-                <img src="{{ $item->gambar ? (\Illuminate\Support\Str::startsWith($item->gambar, 'http') ? $item->gambar : asset('storage/' . $item->gambar)) : 'https://picsum.photos/200/150?random=' . $loop->iteration + 40 }}" 
+                <img src="{{ asset('storage/images/test.jpg') }}" 
                     class="w-32 h-24 object-cover rounded-lg hover:opacity-80 transition">
             </a>
 

@@ -22,13 +22,14 @@ Route::get('/checkout/{type}/{id}', [App\Http\Controllers\PayController::class, 
 Route::view('/profile/setting', 'profile.setting')->name('pengaturan');
 Route::get('/content/image', [App\Http\Controllers\ContentsController::class, 'index'])->name('content.image');
 Route::resource('contents', App\Http\Controllers\ContentsController::class)->except(['index', 'show']);
-Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+Route::get('/blog', fn() => view('blog'))->name('blog');
 Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
 Route::get('/event/blog', [App\Http\Controllers\BlogController::class, 'eventBlog'])->name('event.blog');
 Route::get('/info-blog', [App\Http\Controllers\BlogController::class, 'infoBlog'])->name('info-blog');
 Route::get('/screen/blog', [App\Http\Controllers\BlogController::class, 'screenBlog'])->name('screen.blog');
-Route::view('/bantuan', 'help.index')->name('bantuan');
+Route::get('/bantuan', fn() => view('bantuan'))->name('bantuan');
 Route::get('/event/detail/{id?}', [App\Http\Controllers\EventsController::class, 'show'])->name('event.detail');
+Route::get('/buat-event', fn() => view('creator.create'))->name('buat-event');
 use App\Http\Controllers\ScreenController;
 
 Route::get('/screen/page', [ScreenController::class, 'index'])->name('screen.page');
@@ -45,7 +46,6 @@ Route::get('/switch-mode/{mode}', function ($mode) {
 })->name('switch.mode');
 Route::prefix('creator')->name('creator.')->group(function () {
     Route::get('/{id}', [App\Http\Controllers\CreatorController::class, 'page'])->name('page')->middleware('auth');
-    Route::view('/create', 'creator.create')->name('create');
     
     Route::get('/event', [App\Http\Controllers\CreatorController::class, 'event'])->name('event');
 
@@ -67,10 +67,5 @@ Route::get('/profile/bank', function () {
 Route::resource('event', App\Http\Controllers\EventsController::class)->only(['create', 'store', 'destroy'])->middleware('auth');
 
 
-Route::get('/biaya', function () {
-
-    return view('biaya.index');
-
-})->name('biaya');
-
+Route::get('/biaya', fn() => view('biaya'))->name('biaya');
 require __DIR__.'/auth.php';
