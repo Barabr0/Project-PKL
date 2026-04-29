@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
+
+Route::get('lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('/');
 Route::get('/dashboard', function () {
@@ -22,12 +25,15 @@ Route::get('/checkout/{type}/{id}', [App\Http\Controllers\PayController::class, 
 Route::view('/profile/setting', 'profile.setting')->name('pengaturan');
 Route::get('/content/image', [App\Http\Controllers\ContentsController::class, 'index'])->name('content.image');
 Route::resource('contents', App\Http\Controllers\ContentsController::class)->except(['index', 'show']);
-Route::get('/blog', fn() => view('blog'))->name('blog');
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
 Route::get('/event/blog', [App\Http\Controllers\BlogController::class, 'eventBlog'])->name('event.blog');
 Route::get('/info-blog', [App\Http\Controllers\BlogController::class, 'infoBlog'])->name('info-blog');
 Route::get('/screen/blog', [App\Http\Controllers\BlogController::class, 'screenBlog'])->name('screen.blog');
-Route::get('/bantuan', fn() => view('bantuan'))->name('bantuan');
+
+Route::get('/bantuan', fn() => view('help.index'))->name('bantuan');
+Route::get('/term', fn() => view('help.term'))->name('term');
+
 Route::get('/event/detail/{id?}', [App\Http\Controllers\EventsController::class, 'show'])->name('event.detail');
 Route::get('/buat-event', fn() => view('creator.create'))->name('buat-event');
 use App\Http\Controllers\ScreenController;
@@ -67,5 +73,9 @@ Route::get('/profile/bank', function () {
 Route::resource('event', App\Http\Controllers\EventsController::class)->only(['create', 'store', 'destroy'])->middleware('auth');
 
 
-Route::get('/biaya', fn() => view('biaya'))->name('biaya');
+Route::get('/biaya', fn() => view('biaya.show'))->name('biaya');
+Route::get('/contact', fn() => view('help.contact'))->name('contact');
+Route::get('/about-us', fn() => view('company.about-us'))->name('about us');
+Route::get('/career', fn() => view('company.career'))->name('career');
+Route::get('/company-blog', fn() => view('company.blog'))->name('company-blog');
 require __DIR__.'/auth.php';

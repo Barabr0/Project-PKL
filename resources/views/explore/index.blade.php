@@ -2,12 +2,12 @@
 
 <div class="max-w-7xl mx-auto px-4 py-10">
 
-    <h1 class="text-2xl font-bold mb-6">Jelajah Event</h1>
+    <h1 class="text-2xl font-bold mb-6">{{ __('app.explore.title') }}</h1>
 
     {{-- 🔥 INFO FILTER --}}
     @if(request('kategori'))
         <p class="mb-4 text-sm text-gray-600">
-            Menampilkan kategori:
+            {{ __('app.explore.showing_category') }}
             <span class="font-semibold capitalize">
                 {{ request('kategori') }}
             </span>
@@ -22,18 +22,18 @@
 
             <form method="GET" class="space-y-4">
 
-                <h2 class="font-semibold text-lg">Filter</h2>
+                <h2 class="font-semibold text-lg">{{ __('app.explore.filter') }}</h2>
 
                 {{-- SEARCH --}}
                 <input type="text" name="search"
-                    placeholder="Cari event..."
+                    placeholder="{{ __('app.explore.search_placeholder') }}"
                     value="{{ request('search') }}"
                     class="w-full px-3 py-2 border rounded-lg">
 
                 {{-- KATEGORI --}}
                 <select name="kategori" class="w-full px-3 py-2 border rounded-lg">
 
-                    <option value="">Semua</option>
+                    <option value="">{{ __('app.explore.all_categories') }}</option>
 
                     @foreach ($categories as $kategori)
                     <option value="{{ $kategori->slug }}"
@@ -46,7 +46,7 @@
 
                 {{-- KOTA --}}
                 <select name="kota" class="w-full px-3 py-2 border rounded-lg">
-                    <option value="">Semua Kota</option>
+                    <option value="">{{ __('app.explore.all_cities') }}</option>
                     <option value="Bandung" {{ request('kota')=='Bandung'?'selected':'' }}>Bandung</option>
                     <option value="Jakarta" {{ request('kota')=='Jakarta'?'selected':'' }}>Jakarta</option>
                     <option value="Surabaya" {{ request('kota')=='Surabaya'?'selected':'' }}>Surabaya</option>
@@ -54,7 +54,7 @@
                 </select>
 
                 <button class="w-full bg-blue-900 text-white py-2 rounded-lg">
-                    Terapkan
+                    {{ __('app.explore.apply') }}
                 </button>
 
             </form>
@@ -78,7 +78,7 @@
                             <h3 class="font-semibold text-sm">{{ $event->nama_event }}</h3>
 
                             <p class="text-xs text-gray-500 capitalize">
-                                {{ $event->category ? $event->category->nama_kategori : 'Umum' }} • {{ $event->lokasi }}
+                                {{ $event->category ? $event->category->nama_kategori : __('app.explore.general') }} • {{ $event->lokasi }}
                             </p>
                             <p class="text-xs font-bold text-blue-600 mt-1">
                                 Rp {{ number_format($event->harga, 0, ',', '.') }}
@@ -90,7 +90,7 @@
                 @empty
 
                 <p class="col-span-3 text-center text-gray-500">
-                    Event tidak ditemukan 😢
+                    {{ __('app.explore.not_found') }}
                 </p>
 
                 @endforelse

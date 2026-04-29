@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Screen</title>
+<x-app-layout :imageNavbar="true">
 
-    @vite('resources/css/app.css')
-</head>
-
-<body class="bg-gray-100">
-
-{{-- HEADER --}}
-@include('partials-image.navbar')
 
 {{-- CONTENT --}}
 <div class="max-w-7xl mx-auto px-4 py-8">
@@ -81,9 +69,4 @@
 </div>
 
 {{-- FOOTER --}}
-<footer class="bg-gray-800 text-white text-center py-6 mt-10">
-    <p>© 2026 MyEvent</p>
-</footer>
-
-</body>
-</html>
+</x-app-layout>

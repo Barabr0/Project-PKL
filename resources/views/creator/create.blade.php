@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator</title>
+<x-app-layout>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-white text-gray-800">
-
-@include('partials.navbar')
 
 {{-- 🔥 HERO PARALLAX --}}
 <section class="max-w-7xl mx-auto px-6 py-10">
@@ -205,11 +194,6 @@
 
 </section>
 
-{{-- FOOTER --}}
-<footer class="bg-gray-800 text-white text-center py-6">
-    <p>© 2026 MyEvent. All rights reserved.</p>
-</footer>
-
 {{-- 🔥 SCRIPT PARALLAX --}}
 <script>
 function moveBg(e, container) {
@@ -230,6 +214,4 @@ function resetBg(container) {
     img.style.transform = "scale(1.1) translate(0, 0)";
 }
 </script>
-
-</body>
-</html>
+</x-app-layout>

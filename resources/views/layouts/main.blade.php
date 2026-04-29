@@ -42,7 +42,7 @@
 
     <div class="flex-1 flex flex-col">
 
-        @include('layouts.partials.header')
+
 
         <main class="p-6 overflow-y-auto">
             @yield('content')

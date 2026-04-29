@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Buat event baru di platform kami dengan mudah dan cepat.">
-    <title>Buat Event</title>
+    <meta name="description" content="{{ __('app.event.create_meta') }}">
+    <title>{{ __('app.event.create_title') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -64,8 +64,8 @@
             </svg>
         </a>
         <div>
-            <h1 class="text-2xl font-bold text-white tracking-tight">Buat Event</h1>
-            <p class="text-sm text-slate-400 mt-0.5">Mulai dengan upload banner event kamu</p>
+            <h1 class="text-2xl font-bold text-white tracking-tight">{{ __('app.event.create_title') }}</h1>
+            <p class="text-sm text-slate-400 mt-0.5">{{ __('app.event.create_subtitle') }}</p>
         </div>
     </div>
 
@@ -73,13 +73,13 @@
 
         {{-- BANNER UPLOAD --}}
         <div class="glass-card rounded-2xl p-6">
-            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">🖼️ Banner Event</h2>
+            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">{{ __('app.event.banner_label') }}</h2>
             <label id="upload-zone" class="upload-zone rounded-xl p-12 text-center cursor-pointer block">
                 <input type="file" name="gambar" id="banner-input" class="hidden" accept="image/*" required>
                 <div id="upload-placeholder" class="space-y-3">
                     <div class="text-5xl">🖼️</div>
-                    <p class="font-semibold text-slate-300">Klik atau drag untuk upload banner</p>
-                    <p class="text-sm text-slate-500">Rekomendasi ukuran 1200 × 400 px &bull; JPG, PNG, WEBP</p>
+                    <p class="font-semibold text-slate-300">{{ __('app.event.upload_click') }}</p>
+                    <p class="text-sm text-slate-500">{{ __('app.event.upload_hint') }}</p>
                 </div>
                 <img id="banner-preview" src="" alt="Preview Banner" class="hidden max-h-48 mx-auto rounded-lg object-cover w-full">
             </label>
@@ -87,22 +87,22 @@
 
         {{-- FORM DETAIL --}}
         <div class="glass-card rounded-2xl p-6 space-y-5">
-            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Detail Event</h2>
+            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">{{ __('app.event.detail_label') }}</h2>
 
             {{-- Nama Event --}}
             <div>
-                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="nama-event">Nama Event</label>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="nama-event">{{ __('app.event.name_label') }}</label>
                 <input id="nama-event" name="nama_event" type="text"
                        class="input-style w-full rounded-xl px-4 py-2.5 text-sm"
-                       placeholder="Contoh: Konser Musik 2026" required>
+                       placeholder="{{ __('app.event.name_placeholder') }}" required>
             </div>
 
             {{-- Kategori & Tipe --}}
             <div class="grid sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="kategori">Kategori</label>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="kategori">{{ __('app.event.category_label') }}</label>
                     <select id="kategori" name="kategori_id" class="input-style w-full rounded-xl px-4 py-2.5 text-sm" required>
-                        <option value="">Pilih Kategori</option>
+                        <option value="">{{ __('app.event.category_placeholder') }}</option>
                         @foreach($categories as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->nama_kategori }}</option>
                         @endforeach
@@ -114,14 +114,14 @@
             {{-- Tanggal --}}
             <div class="grid sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tanggal-mulai">Tanggal Mulai</label>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tanggal-mulai">{{ __('app.event.start_date') }}</label>
                     <input id="tanggal-mulai" name="tanggal" type="date"
                            class="input-style w-full rounded-xl px-4 py-2.5 text-sm" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tipe-event">Tipe Event (Opsional)</label>
+                    <label class="block text-sm font-medium text-slate-300 mb-1.5" for="tipe-event">{{ __('app.event.type_label') }}</label>
                     <select id="tipe-event" name="tipe_event" class="input-style w-full rounded-xl px-4 py-2.5 text-sm">
-                        <option value="">Pilih Tipe</option>
+                        <option value="">{{ __('app.event.type_placeholder') }}</option>
                         <option>Offline</option>
                         <option>Online</option>
                         <option>Hybrid</option>
@@ -131,15 +131,15 @@
 
             {{-- Lokasi --}}
             <div>
-                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="lokasi">Lokasi</label>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="lokasi">{{ __('app.event.location_label') }}</label>
                 <input id="lokasi" name="lokasi" type="text"
                        class="input-style w-full rounded-xl px-4 py-2.5 text-sm"
-                       placeholder="Bandung / Online / Jakarta" required>
+                       placeholder="{{ __('app.event.location_placeholder') }}" required>
             </div>
 
             {{-- Harga Tiket --}}
             <div>
-                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="harga">Harga Tiket</label>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="harga">{{ __('app.event.price_label') }}</label>
                 <div class="relative">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">Rp</span>
                     <input id="harga" name="harga" type="number" min="0"
@@ -149,17 +149,17 @@
             </div>
             
             <div>
-                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="deskripsi">Deskripsi</label>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5" for="deskripsi">{{ __('app.event.desc_label') }}</label>
                 <textarea id="deskripsi" name="deskripsi" rows="4"
                 class="input-style w-full rounded-xl px-4 py-2.5 text-sm resize-none"
-                          placeholder="Ceritakan detail tentang event kamu..." required></textarea>
+                          placeholder="{{ __('app.event.desc_placeholder') }}" required></textarea>
             </div>
 
             {{-- BUTTON --}}
             <div class="flex justify-end pt-2">
                 <button id="btn-lanjutkan" type="submit"
                         class="btn-primary text-white font-semibold px-8 py-2.5 rounded-xl text-sm flex items-center gap-2">
-                    Lanjutkan
+                    {{ __('app.event.submit') }}
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                     </svg>

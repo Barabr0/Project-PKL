@@ -1,24 +1,21 @@
-@php
-    $lang = request('lang', 'id');
-@endphp
 <div class="bg-blue-800 font-semibold text-white text-sm py-2 px-6 flex justify-end items-center gap-4">
-    <a href="{{ route('buat-event', ['lang' => $lang]) }}" class="hover:text-blue-300">
-        {{ $lang == 'id' ? 'Buat Event' : 'Create Event' }}
+    <a href="{{ route('buat-event') }}" class="hover:text-blue-300">
+        {{ __('app.navbar.create_event') }}
     </a>
-    <a href="{{ route('biaya', ['lang' => $lang]) }}" class="hover:text-blue-300">
-        {{ $lang == 'id' ? 'Biaya' : 'Pricing' }}
+    <a href="{{ route('biaya') }}" class="hover:text-blue-300">
+        {{ __('app.navbar.biaya') }}
     </a>
-    <a href="{{ route('blog', ['lang' => $lang]) }}" class="hover:text-blue-300">
-        Blog
+    <a href="{{ route('blog') }}" class="hover:text-blue-300">
+        {{ __('app.navbar.blog') }}
     </a>
-    <a href="{{ route('bantuan', ['lang' => $lang]) }}" class="hover:text-blue-300">
-        {{ $lang == 'id' ? 'Bantuan' : 'Help' }}
+    <a href="{{ route('bantuan') }}" class="hover:text-blue-300">
+        {{ __('app.navbar.bantuan') }}
     </a>
 
     {{-- Language Switcher --}}
     <div x-data="{ open: false }" class="relative ml-2">
         <button @click="open = !open" class="flex items-center gap-1 hover:text-blue-300 focus:outline-none uppercase border border-white/20 rounded px-2 py-0.5 text-xs">
-            <span>{{ $lang }}</span>
+            <span>{{ app()->getLocale() }}</span>
             <svg class="w-3 h-3 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -29,8 +26,8 @@
              x-transition:enter-end="opacity-100 scale-100"
              @click.away="open = false" 
              class="absolute right-0 mt-2 w-20 bg-white rounded-md shadow-lg py-1 z-[60] text-gray-800 font-medium">
-            <a href="{{ request()->fullUrlWithQuery(['lang' => 'id']) }}" class="block px-3 py-1.5 hover:bg-gray-100 {{ $lang == 'id' ? 'text-blue-600 bg-blue-50' : '' }}">ID</a>
-            <a href="{{ request()->fullUrlWithQuery(['lang' => 'en']) }}" class="block px-3 py-1.5 hover:bg-gray-100 {{ $lang == 'en' ? 'text-blue-600 bg-blue-50' : '' }}">EN</a>
+            <a href="{{ route('lang.switch', 'id') }}" class="block px-3 py-1.5 hover:bg-gray-100 {{ app()->getLocale() == 'id' ? 'text-blue-600 bg-blue-50' : '' }}">ID</a>
+            <a href="{{ route('lang.switch', 'en') }}" class="block px-3 py-1.5 hover:bg-gray-100 {{ app()->getLocale() == 'en' ? 'text-blue-600 bg-blue-50' : '' }}">EN</a>
         </div>
     </div>
 </div>
@@ -48,7 +45,7 @@
 
         {{-- SEARCH --}}
         <div class="hidden md:block w-1/3 mx-6">
-            <input type="text" placeholder="Cari event..."
+            <input type="text" placeholder="{{ __('app.navbar.search_placeholder') }}"
                 class="w-full px-4 py-2 rounded-lg bg-white/10 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white">
         </div>
 
@@ -61,10 +58,10 @@
                 {{-- GUEST --}}
                 @guest
                     <h1 class="text-white font-semibold">
-                        <a href="/Jelajah">Jelajah</a>
+                        <a href="/Jelajah">{{ __('app.navbar.jelajah') }}</a>
                     </h1>
                     <h1 class="text-white font-semibold">
-                        <a href="/login">Tiket</a>
+                        <a href="/login">{{ __('app.navbar.tiket') }}</a>
                     </h1>
                 @endguest
 
@@ -76,18 +73,18 @@
 
                     @if($mode == 'creator')
                         <h1 class="text-white font-semibold">
-                            <a href="/Jelajah">Jelajah</a>
+                            <a href="/Jelajah">{{ __('app.navbar.jelajah') }}</a>
                         </h1>
                         <h1 class="text-white font-semibold">
-                            <a href="/event/create">Buat Event</a>
+                            <a href="/event/create">{{ __('app.navbar.create_event') }}</a>
                         </h1>
 
                     @else
                         <h1 class="text-white font-semibold">
-                            <a href="/Jelajah">Jelajah</a>
+                            <a href="/Jelajah">{{ __('app.navbar.jelajah') }}</a>
                         </h1>
                         <h1 class="text-white font-semibold">
-                            <a href="/tiket">Tiket saya</a>
+                            <a href="/tiket">{{ __('app.navbar.tiket_saya') }}</a>
                         </h1>
                     @endif
                 @endauth
@@ -99,8 +96,8 @@
 
                 {{-- GUEST --}}
                 @guest
-                    <a href="/login" class="text-white hover:text-blue-300">Login</a>
-                    <a href="/register" class="bg-white text-blue-900 px-4 py-2 rounded hover:bg-gray-200">Register</a>
+                    <a href="/login" class="text-white hover:text-blue-300">{{ __('app.navbar.login') }}</a>
+                    <a href="/register" class="bg-white text-blue-900 px-4 py-2 rounded hover:bg-gray-200">{{ __('app.navbar.register') }}</a>
                 @endguest
 
                 {{-- AUTH --}}
@@ -124,24 +121,24 @@
 
                         {{-- CREATOR --}}
                         @if($mode == 'creator')
-                            <a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
-                            <a href="{{ route('creator.event') }}" class="block px-4 py-2 hover:bg-gray-100">Event saya</a>
-                            <a href="{{ route('creator.access') }}" class="block px-4 py-2 hover:bg-gray-100">Kelola akses</a>
-                            <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Informasi Dasar</a>
-                            <a href="/profile/legal-information" class="block px-4 py-2 hover:bg-gray-100">Informasi Legal</a>
-                            <a href="/profile/bank" class="block px-4 py-2 hover:bg-gray-100">Informasi Bank</a>
-                            <a href="/setting" class="block px-4 py-2 hover:bg-gray-100">Pengaturan</a>
+                            <a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.dashboard') }}</a>
+                            <a href="{{ route('creator.event') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.event_saya') }}</a>
+                            <a href="{{ route('creator.access') }}" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.kelola_akses') }}</a>
+                            <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.informasi_dasar') }}</a>
+                            <a href="/profile/legal-information" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.informasi_legal') }}</a>
+                            <a href="/profile/bank" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.informasi_bank') }}</a>
+                            <a href="/setting" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.pengaturan') }}</a>
 
                         {{-- BUYER --}}
                         @else
-                            <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Informasi Dasar</a>
-                            <a href="/tiket" class="block px-4 py-2 hover:bg-gray-100">Tiket</a>
+                            <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.informasi_dasar') }}</a>
+                            <a href="/tiket" class="block px-4 py-2 hover:bg-gray-100">{{ __('app.navbar.tiket') }}</a>
                         @endif
 
                         <form method="POST" action="/logout">
                             @csrf
                             <button class="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
-                                Logout
+                                {{ __('app.navbar.logout') }}
                             </button>
                         </form>
                     </div>

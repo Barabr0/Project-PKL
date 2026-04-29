@@ -7,11 +7,11 @@
 
         <div class="max-w-md">
             <h1 class="text-4xl font-bold mb-4">
-                Gabung Sekarang 🚀
+                {{ __('app.auth.register_welcome') }}
             </h1>
 
             <p class="text-lg text-white/80">
-                Buat akun dan temukan berbagai event seru, workshop, konser, dan seminar hanya di MyEvent.
+                {{ __('app.auth.register_subtitle') }}
             </p>
         </div>
 
@@ -24,10 +24,10 @@
 
             <!-- TITLE -->
             <h2 class="text-2xl font-bold text-center mb-2">
-                Daftar Akun
+                {{ __('app.auth.register_title') }}
             </h2>
             <p class="text-center text-gray-500 text-sm mb-6">
-                Buat akun untuk mulai eksplor event 🎉
+                {{ __('app.auth.register_sub') }}
             </p>
 
             <form method="POST" action="{{ route('register') }}">
@@ -92,13 +92,13 @@
 
                     <button type="submit" 
                         class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">
-                        Register
+                        {{ __('app.auth.register_button') }}
                     </button>
 
                     <p class="text-center text-sm text-gray-500 mt-4">
-                        Sudah punya akun?
+                        {{ __('app.auth.has_account') }}
                         <a href="{{ route('login') }}" class="text-blue-600 hover:underline">
-                            Login
+                            {{ __('app.auth.login_link') }}
                         </a>
                     </p>
 

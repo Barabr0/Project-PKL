@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Detail</title>
+<x-app-layout :imageNavbar="true">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    @vite('resources/css/app.css')
-
-    <style>
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-    </style>
-</head>
-
-<body class="bg-gray-100 antialiased">
-
-{{-- NAVBAR --}}
-@include('partials-image.navbar')
 
 {{-- 🔵 ARTIKEL POPULER --}}
 <section class="max-w-7xl mx-auto px-4 py-6">
 
-    <h2 class="text-xl font-bold mb-4">Artikel Populer</h2>
+    <h2 class="text-xl font-bold mb-4">{{ __('Artikel Populer') }}</h2>
 
     <div class="grid md:grid-cols-3 gap-6">
 
@@ -38,7 +18,7 @@
             <div class="p-5">
                 <h3 class="text-lg font-bold mb-2">
                     <a href="{{ $main ? route('blog.show', $main->id) : '#' }}" class="hover:text-blue-600">
-                        {{ $main ? $main->judul : 'Artikel Utama Populer' }}
+                        {{ $main ? $main->judul : __('Artikel Utama Populer') }}
                     </a>
                 </h3>
                 <p class="text-sm text-gray-500">
@@ -82,7 +62,7 @@
 {{-- 🟣 ARTIKEL PILIHAN --}}
 <section class="max-w-7xl mx-auto px-4 py-6">
 
-    <h2 class="text-xl font-bold mb-4">Artikel Pilihan</h2>
+    <h2 class="text-xl font-bold mb-4">{{ __('Artikel Pilihan') }}</h2>
 
     <div class="grid md:grid-cols-3 gap-6">
 
@@ -115,7 +95,7 @@
 {{-- ⚫ ARTIKEL LAINNYA --}}
 <section class="max-w-7xl mx-auto px-4 py-6">
 
-    <h2 class="text-xl font-bold mb-4">Artikel Lainnya</h2>
+    <h2 class="text-xl font-bold mb-4">{{ __('Artikel Lainnya') }}</h2>
 
     <div class="space-y-4">
 
@@ -145,10 +125,4 @@
 
 </section>
 
-{{-- FOOTER --}}
-<footer class="bg-gray-800 text-white text-center py-6 mt-10">
-    <p>© 2026 MyEvent. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+</x-app-layout>

@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kreator</title>
+<x-app-layout :imageNavbar="true">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-100">
-
-@include('partials-image.navbar')
 
 {{-- 🔵 BANNER --}}
 <div class="w-full h-48 md:h-64 bg-gray-300 relative">
@@ -44,13 +33,13 @@
         <a href="{{ route('creator.page', ['id' => $creator->id, 'status' => 'aktif']) }}"
            class="pb-3 border-b-2
            {{ $status == 'aktif' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500' }}">
-            Event Aktif
+            {{ __('Event Aktif') }}
         </a>
 
         <a href="{{ route('creator.page', ['id' => $creator->id, 'status' => 'nonaktif']) }}"
            class="pb-3 border-b-2
            {{ $status == 'nonaktif' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500' }}">
-            Event Tidak Aktif
+            {{ __('Event Tidak Aktif') }}
         </a>
 
     </div>
@@ -74,7 +63,7 @@
                 </h3>
 
                 <p class="text-xs mt-1 text-green-600">
-                    Aktif
+                    {{ __('Aktif') }}
                 </p>
 
             </div>
@@ -83,7 +72,7 @@
         @empty
 
         <p class="col-span-4 text-center text-gray-500">
-            Tidak ada event 😢
+            {{ __('Tidak ada event 😢') }}
         </p>
 
         @endforelse
@@ -92,9 +81,4 @@
 
 </section>
 
-<footer class="bg-gray-800 text-white text-center py-6">
-    <p>© 2026 MyEvent</p>
-</footer>
-
-</body>
-</html>
+</x-app-layout>

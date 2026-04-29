@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screen Detail</title>
+<x-app-layout>
 
-    @vite('resources/css/app.css')
-</head>
-
-<body class="bg-black text-white">
-
-@include('partials-screen.navbar')
+<div class="bg-black text-white">
 
 {{-- 🔥 HERO (BACKGROUND + POSTER) --}}
 <div class="relative">
@@ -111,9 +101,5 @@
 </section>
 
 {{-- FOOTER --}}
-<footer class="bg-gray-900 text-center py-6 mt-10 text-gray-400">
-    <p>© 2026 MyEvent</p>
-</footer>
-
-</body>
-</html>
+</div>
+</x-app-layout>

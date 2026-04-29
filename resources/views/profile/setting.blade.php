@@ -8,15 +8,15 @@
         <div class="bg-white rounded-xl shadow p-6 max-w-6xl">
 
             <h1 class="text-xl font-semibold mb-6">
-                Pengaturan
+                {{ __('app.profile.settings_title') }}
             </h1>
 
             {{-- NOTIFIKASI --}}
             <div class="flex items-center justify-between py-4 border-b">
                 <div>
-                    <h2 class="font-medium">Newsletter</h2>
+                    <h2 class="font-medium">{{ __('app.profile.newsletter') }}</h2>
                     <p class="text-sm text-gray-500">
-                        Dapatkan info event terbaru
+                        {{ __('app.profile.newsletter_desc') }}
                     </p>
                 </div>
 
@@ -32,9 +32,9 @@
             {{-- NOTIFIKASI EMAIL --}}
             <div class="flex items-center justify-between py-4 border-b">
                 <div>
-                    <h2 class="font-medium">Notifikasi Email</h2>
+                    <h2 class="font-medium">{{ __('app.profile.email_notif') }}</h2>
                     <p class="text-sm text-gray-500">
-                        Terima update melalui email
+                        {{ __('app.profile.email_notif_desc') }}
                     </p>
                 </div>
 
@@ -50,7 +50,7 @@
             <div class="mt-6">
 
                 <h2 class="text-red-500 font-semibold mb-2">
-                    Zona Berbahaya
+                    {{ __('app.profile.danger_zone') }}
                 </h2>
 
                 @include('profile.partials.delete-user-form')

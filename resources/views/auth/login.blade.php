@@ -7,11 +7,11 @@
 
         <div class="max-w-md">
             <h1 class="text-4xl font-bold mb-4">
-                Selamat Datang 👋
+                {{ __('app.auth.login_welcome') }}
             </h1>
 
             <p class="text-lg text-white/80 leading-relaxed">
-                Masuk dan temukan berbagai event seru, workshop, konser, dan seminar hanya di MyEvent.
+                {{ __('app.auth.login_subtitle') }}
             </p>
         </div>
 
@@ -24,11 +24,11 @@
 
             <!-- TITLE -->
             <h2 class="text-2xl font-bold text-center mb-2">
-                Login
+                {{ __('app.auth.login_title') }}
             </h2>
 
             <p class="text-center text-gray-500 text-sm mb-6">
-                Masuk ke akun kamu
+                {{ __('app.auth.login_sub') }}
             </p>
 
             <!-- STATUS -->
@@ -69,12 +69,12 @@
 
                     <label class="flex items-center text-gray-600">
                         <input type="checkbox" name="remember" class="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                        Remember me
+                        {{ __('app.auth.remember_me') }}
                     </label>
 
                     @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}" class="text-blue-600 hover:underline">
-                            Lupa password?
+                            {{ __('app.auth.forgot_password') }}
                         </a>
                     @endif
 
@@ -85,13 +85,13 @@
 
                     <button type="submit" 
                         class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition">
-                        Login
+                        {{ __('app.auth.login_title') }}
                     </button>
 
                     <p class="text-center text-sm text-gray-500 mt-4">
-                        Belum punya akun?
+                        {{ __('app.auth.no_account') }}
                         <a href="{{ route('register') }}" class="text-blue-600 hover:underline font-medium">
-                            Daftar
+                            {{ __('app.auth.register_link') }}
                         </a>
                     </p>
 

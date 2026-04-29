@@ -13,10 +13,10 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $contents = contents::all();
-        $categories = categories::all();
+        $contents = contents::latest()->take(10)->get();
+        $categories = categories::take(12)->get();
         $movies = cache()->remember('tmdb_now_playing', 7200, function () {
-            $response = Http::timeout(10)->get('https://api.themoviedb.org/3/movie/now_playing', [
+            $response = Http::timeout(5)->get('https://api.themoviedb.org/3/movie/now_playing', [
                 'api_key' => env('TMDB_KEY'),
                 'language' => 'id-ID',
                 'page' => 1
@@ -31,24 +31,19 @@ class WelcomeController extends Controller
         $popularEvents = events::with('category')->where('is_popular', true)->take(10)->get();
         $healingEvents = events::with('category')->whereHas('category', fn($q) => $q->where('nama_kategori', 'Healing'))->take(10)->get();
         $workshopEvents = events::with('category')->whereHas('category', fn($q) => $q->where('nama_kategori', 'Workshop'))->take(10)->get();
-        $topEvents = events::with('category')->take(3)->get(); // For Event Top section
+        $topEvents = events::with('category')->latest()->take(3)->get(); // For Event Top section
         
-        // All events for Alpine filtering in "Populer di" section
-        $allEvents = events::with('category')->get();
-        $creators = \App\Models\User::where('role', 'like', '%creator%')->take(10)->get();
+        // All events for Alpine filtering in "Populer di" section - limited to prevent memory leak
+        $allEvents = events::with('category')->latest()->take(50)->get();
+        $creators = \App\Models\User::where('role', 'like', '%creator%')->take(12)->get();
 
         $eventsJson = $allEvents->map(function ($e) {
             return [
                 'id' => $e->id,
-                'nama' => $e->nama_event,
+                'nama' => $e->nama_event, // This will use the fixed accessor
                 'lokasi' => $e->lokasi ?? '',
                 'kategori' => $e->category ? $e->category->nama_kategori : 'Umum',
                 'harga' => $e->harga ?? 0,
-                'gambar' => $e->gambar
-                    ? (\Illuminate\Support\Str::startsWith($e->gambar, 'http')
-                        ? $e->gambar
-                        : asset('storage/' . $e->gambar))
-                    : 'https://picsum.photos/400/300?random=' . $e->id,
                 'url' => route('event.detail', $e->id),
             ];
         });

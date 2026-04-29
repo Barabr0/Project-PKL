@@ -6,16 +6,16 @@
 
     {{-- 🔥 HEADER --}}
     <div class="mb-6">
-        <h1 class="text-2xl font-bold">Informasi Bank</h1>
+        <h1 class="text-2xl font-bold">{{ __('app.profile.bank_title') }}</h1>
         <p class="text-sm text-gray-500">
-            Tambahkan rekening bank untuk pencairan dana event kamu.
+            {{ __('app.profile.bank_desc') }}
         </p>
     </div>
 
 
     {{-- ⚠️ INFO --}}
     <div class="bg-blue-50 border border-blue-100 text-blue-700 p-4 rounded-xl mb-6 text-sm">
-        Pastikan nama pemilik rekening sesuai dengan nama di bank agar proses pencairan dana tidak gagal.
+        {{ __('app.profile.bank_alert') }}
     </div>
 
 
@@ -24,7 +24,7 @@
 
         {{-- BANK --}}
         <div>
-            <label class="text-sm font-medium">Bank</label>
+            <label class="text-sm font-medium">{{ __('app.profile.bank_label') }}</label>
             <select class="w-full mt-1 border rounded-lg px-3 py-2">
                 <option>BCA</option>
                 <option>BRI</option>
@@ -36,15 +36,15 @@
 
         {{-- NAMA PEMILIK --}}
         <div>
-            <label class="text-sm font-medium">Nama Pemilik Rekening</label>
+            <label class="text-sm font-medium">{{ __('app.profile.owner_name') }}</label>
             <input type="text"
                    class="w-full mt-1 border rounded-lg px-3 py-2"
-                   placeholder="Sesuai nama di bank">
+                   placeholder="{{ __('app.profile.owner_placeholder') }}">
         </div>
 
         {{-- NOMOR REKENING --}}
         <div>
-            <label class="text-sm font-medium">Nomor Rekening</label>
+            <label class="text-sm font-medium">{{ __('app.profile.account_number') }}</label>
             <input type="text"
                    class="w-full mt-1 border rounded-lg px-3 py-2"
                    placeholder="1234567890">
@@ -52,25 +52,25 @@
 
         {{-- CABANG --}}
         <div>
-            <label class="text-sm font-medium">Kantor Cabang (opsional)</label>
+            <label class="text-sm font-medium">{{ __('app.profile.branch') }}</label>
             <input type="text"
                    class="w-full mt-1 border rounded-lg px-3 py-2"
-                   placeholder="Bandung / Jakarta / dll">
+                   placeholder="{{ __('app.profile.branch_placeholder') }}">
         </div>
 
         {{-- KOTA --}}
         <div>
-            <label class="text-sm font-medium">Kota</label>
+            <label class="text-sm font-medium">{{ __('app.profile.city') }}</label>
             <input type="text"
                    class="w-full mt-1 border rounded-lg px-3 py-2"
-                   placeholder="Bandung">
+                   placeholder="{{ __('app.profile.city_placeholder') }}">
         </div>
 
 
         {{-- BUTTON --}}
         <div class="flex justify-end">
             <button class="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800">
-                Simpan Rekening
+                {{ __('app.profile.save_account') }}
             </button>
         </div>
 
@@ -80,7 +80,7 @@
     {{-- 📌 LIST REKENING --}}
     <div class="mt-6 bg-white rounded-xl shadow p-6">
 
-        <h2 class="font-bold mb-4">Rekening Tersimpan</h2>
+        <h2 class="font-bold mb-4">{{ __('app.profile.saved_accounts') }}</h2>
 
         <div class="space-y-3">
 
@@ -91,7 +91,7 @@
                     <p class="text-sm text-gray-500">Bara User</p>
                 </div>
                 <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">
-                    Aktif
+                    {{ __('app.profile.account_active') }}
                 </span>
             </div>
 

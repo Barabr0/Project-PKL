@@ -13,8 +13,7 @@
 
         <div>
             <h2 class="font-bold text-lg">{{ Auth::user()->name ?? 'User' }}</h2>
-            <p class="text-sm text-gray-500">Member sejak 2026</p>
-            <p class="text-sm text-gray-400">Jawa Barat</p>
+            <p class="text-sm text-gray-500">{{ __('app.dashboard.member_since') }}</p>
         </div>
 
     </div>
@@ -28,13 +27,13 @@
             <button @click="tab='aktif'"
                 :class="tab==='aktif' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-500'"
                 class="pb-2 font-semibold">
-                Event Aktif
+                {{ __('app.dashboard.active_events') }}
             </button>
 
             <button @click="tab='lalu'"
                 :class="tab==='lalu' ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-500'"
                 class="pb-2 font-semibold">
-                Event Lalu
+                {{ __('app.dashboard.past_events') }}
             </button>
 
         </div>
@@ -65,12 +64,12 @@
                     <img src="{{ asset('storage/images/test.jpg') }}"
                          class="w-20 mx-auto mb-4 opacity-70">
 
-                    <p class="text-gray-500 mb-4">Belum ada event aktif</p>
+                    <p class="text-gray-500 mb-4">{{ __('app.dashboard.no_active_events') }}</p>
 
                     @if(session('mode','buyer') == 'creator')
                         <a href="/event/create"
                            class="bg-blue-900 text-white px-4 py-2 rounded-lg">
-                            Buat Event
+                            {{ __('app.dashboard.create_event') }}
                         </a>
                     @endif
 
@@ -85,7 +84,7 @@
         <div x-show="tab==='lalu'">
 
             <div class="bg-white rounded-xl shadow p-10 text-center">
-                <p class="text-gray-500">Belum ada event sebelumnya</p>
+                <p class="text-gray-500">{{ __('app.dashboard.no_past_events') }}</p>
             </div>
 
         </div>
@@ -98,14 +97,14 @@
 
     <div class="mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl p-6">
 
-        <h3 class="font-bold text-lg mb-2">Siap jadi Event Creator?</h3>
+        <h3 class="font-bold text-lg mb-2">{{ __('app.dashboard.cta_title') }}</h3>
         <p class="text-sm opacity-90 mb-4">
-            Kelola event, jual tiket, dan pantau penjualan dengan mudah.
+            {{ __('app.dashboard.cta_desc') }}
         </p>
 
         <a href="{{ route('switch.mode','creator') }}"
            class="bg-white text-blue-900 px-4 py-2 rounded-lg font-semibold">
-            Mulai Jadi Creator
+            {{ __('app.dashboard.cta_button') }}
         </a>
 
     </div>

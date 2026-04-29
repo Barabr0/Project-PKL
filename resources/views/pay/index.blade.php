@@ -27,10 +27,10 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 class="font-bold text-lg text-gray-800">
-                            {{ $type === 'movie' ? 'Tiket Reguler' : 'General Admission' }}
+                            {{ $type === 'movie' ? __('app.pay.ticket_regular') : __('app.pay.general_admission') }}
                         </h3>
                         <p class="text-sm text-gray-500 mt-1">
-                            {{ $type === 'movie' ? 'Akses menonton film pilihan Anda.' : 'Tiket masuk event standar.' }}
+                            {{ $type === 'movie' ? __('app.pay.ticket_access') : __('app.pay.general_admission_desc') }}
                         </p>
                     </div>
                 </div>
@@ -62,8 +62,8 @@
             <div class="border rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h3 class="font-bold text-lg text-gray-800">VIP Ticket</h3>
-                        <p class="text-sm text-gray-500 mt-1">Akses eksklusif, baris depan, dan merchandise.</p>
+                        <h3 class="font-bold text-lg text-gray-800">{{ __('app.pay.vip_ticket') }}</h3>
+                        <p class="text-sm text-gray-500 mt-1">{{ __('app.pay.vip_desc') }}</p>
                     </div>
                 </div>
 
@@ -95,25 +95,25 @@
         <!-- KANAN -->
         <div>
             <div class="bg-white border rounded-2xl p-6 shadow-lg sticky top-24">
-                <h3 class="font-bold text-lg mb-4 border-bottom pb-2">Detail Pesanan</h3>
+                <h3 class="font-bold text-lg mb-4 border-bottom pb-2">{{ __('app.pay.order_detail') }}</h3>
 
                 <div class="space-y-3 mb-6">
                     <div class="flex justify-between text-sm text-gray-600">
-                        <span>Jumlah Tiket</span>
+                        <span>{{ __('app.pay.qty_label') }}</span>
                         <span id="subtotal-qty" class="font-semibold text-gray-900">0</span>
                     </div>
                     <div class="flex justify-between text-lg font-bold border-t pt-3 mt-3">
-                        <span>Total Bayar</span>
+                        <span>{{ __('app.pay.total_label') }}</span>
                         <span id="subtotal-price" class="text-blue-700">Rp 0</span>
                     </div>
                 </div>
 
                 <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 hover:shadow-lg transform active:scale-95 transition-all">
-                    Bayar Sekarang
+                    {{ __('app.pay.pay_now') }}
                 </button>
                 
                 <p class="text-center text-xs text-gray-400 mt-4 italic">
-                    *Harga sudah termasuk pajak dan biaya layanan.
+                    {{ __('app.pay.tax_note') }}
                 </p>
             </div>
         </div>

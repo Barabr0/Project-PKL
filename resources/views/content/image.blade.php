@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyApp Event</title>
+<x-app-layout :imageNavbar="true">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    @vite('resources/css/app.css')
-
-    <style>
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden; /* Mencegah geser kanan di seluruh device */
-        }
-        .swiper.mySwiper {
-            overflow: visible;
-        }
-        .swiper.heroSwiper {
-            overflow: hidden;
-            border-radius: 1rem;
-        }
-        .swiper-pagination-bullet { background: white; opacity: 0.7; }
-        .swiper-pagination-bullet-active { background: white; opacity: 1; }
-    </style>
-</head>
-
-<body class="bg-gray-100 antialiased">
-@include('partials-image.navbar')
 @php
     $item = isset($content) ? $content : (isset($contents) ? $contents->first() : null);
 @endphp
@@ -58,9 +31,7 @@
     </div>
 
 </section>
-<footer class="bg-gray-800 text-white text-center py-6 mt-10">
-    <p>© 2026 MyEvent. All rights reserved.</p>
-</footer>
+@include('partials.footer')
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
@@ -87,5 +58,4 @@ new Swiper(".eventKategoriSwiper", {
     navigation: { nextEl: ".eventKategori-next", prevEl: ".eventKategori-prev" },
 });
 </script>
-</body>
-</html>
+</x-app-layout>

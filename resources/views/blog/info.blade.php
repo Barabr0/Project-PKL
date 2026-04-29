@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Blog</title>
+<x-app-layout :imageNavbar="true">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    @vite('resources/css/app.css')
-
-    <style>
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-    </style>
-</head>
-
-<body class="bg-gray-100 antialiased">
-
-{{-- NAVBAR --}}
-@include('partials-image.navbar')
 
 {{-- 🔵 ARTIKEL POPULER --}}
 <section class="max-w-7xl mx-auto px-4 py-6">
@@ -146,10 +126,5 @@
 </section>
 
 {{-- FOOTER --}}
-<footer class="bg-gray-800 text-white text-center py-6 mt-10">
-    <p>© 2026 MyEvent. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+</x-app-layout>
 

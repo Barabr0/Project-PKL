@@ -18,7 +18,7 @@
 </section>
 
 <section class="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
-  <h2 class="text-2xl font-bold mb-6">Event Populer</h2>
+  <h2 class="text-2xl font-bold mb-6">{{ __('app.welcome.popular_events') }}</h2>
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       @forelse ($popularEvents as $event)
@@ -31,7 +31,7 @@
         </div>
       </div>
       @empty
-      <div class="w-full py-10 text-center text-gray-500">Tidak ada event populer saat ini.</div>
+      <div class="w-full py-10 text-center text-gray-500">{{ __('app.welcome.no_popular_events') }}</div>
       @endforelse
     </div>
     <div class="swiper-button-next"></div>
@@ -50,8 +50,8 @@
 
     {{-- TITLE --}}
     <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold">Screen</h2>
-        <a href="/screen/page" class="text-blue-600 text-sm">Lihat Semua</a>
+        <h2 class="text-2xl font-bold">{{ __('app.welcome.screen') }}</h2>
+        <a href="/screen/page" class="text-blue-600 text-sm">{{ __('app.welcome.see_all') }}</a>
     </div>
 
     {{-- SLIDER --}}
@@ -76,7 +76,7 @@
                         </h3>
 
                         <p class="text-xs text-gray-500 mt-1">
-                            Tayang • {{ \Carbon\Carbon::parse($movie['release_date'] ?? now())->format('Y') }}
+                            {{ __('app.welcome.showing') }} • {{ \Carbon\Carbon::parse($movie['release_date'] ?? now())->format('Y') }}
                         </p>
                     </div>
 
@@ -84,7 +84,7 @@
 
             </div>
             @empty
-            <p class="text-center w-full py-10 text-gray-500">Gagal memuat film tayang.</p>
+            <p class="text-center w-full py-10 text-gray-500">{{ __('app.welcome.failed_load_movies') }}</p>
             @endforelse
 
         </div>
@@ -98,7 +98,7 @@
 </section>
 
 <section class="max-w-7xl mx-auto px-6 pb-16">
-  <h2 class="text-2xl font-bold mb-6">Event Top</h2>
+  <h2 class="text-2xl font-bold mb-6">{{ __('app.welcome.top_events') }}</h2>
   <div class="w-full h-auto md:h-80 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 p-6 overflow-x-auto">
     <div class="flex gap-4 min-w-max">
       @forelse ($topEvents->take(3) as $key => $event)
@@ -109,7 +109,7 @@
         </a>
       </div>
       @empty
-      <div class="w-full py-10 text-center text-white font-medium">Tidak ada event top saat ini.</div>
+      <div class="w-full py-10 text-center text-white font-medium">{{ __('app.welcome.no_top_events') }}</div>
       @endforelse
     </div>
   </div>
@@ -119,7 +119,7 @@
 
     <div class="bg-white rounded-2xl shadow-lg p-6">
 
-        <h2 class="text-2xl font-bold mb-6">Kategori</h2>
+        <h2 class="text-2xl font-bold mb-6">{{ __('app.welcome.categories') }}</h2>
 
         {{-- 🔥 SLIDER --}}
         <div class="swiper eventKategoriSwiper mb-8">
@@ -173,7 +173,7 @@
 </section>
 
 <section class="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
-    <h2 class="text-2xl font-bold mb-6">Event Healing</h2>
+    <h2 class="text-2xl font-bold mb-6">{{ __('app.welcome.healing_events') }}</h2>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         @forelse ($healingEvents as $event)
@@ -186,7 +186,7 @@
           </div>
         </div>
         @empty
-        <div class="w-full py-10 text-center text-gray-500">Tidak ada event healing saat ini.</div>
+        <div class="w-full py-10 text-center text-gray-500">{{ __('app.welcome.no_healing_events') }}</div>
         @endforelse
       </div>
       <div class="swiper-button-next"></div>
@@ -195,7 +195,7 @@
 </section>
 
 <section class="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
-    <h2 class="text-2xl font-bold mb-6">Kreator Favorit</h2>
+    <h2 class="text-2xl font-bold mb-6">{{ __('app.welcome.favorite_creators') }}</h2>
 
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
@@ -228,14 +228,14 @@
                         {{-- BUTTON --}}
                         <a href="{{ route('creator.page', $creator->id) }}" 
                            class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-center rounded-xl text-xs font-bold transition-colors mt-auto">
-                            Lihat Profil
+                            {{ __('app.welcome.view_profile') }}
                         </a>
 
                     </div>
                 </div>
             @empty
                 <div class="w-full text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
-                    <p class="text-gray-500 font-medium">Tidak ada kreator favorit saat ini.</p>
+                    <p class="text-gray-500 font-medium">{{ __('app.welcome.no_creators') }}</p>
                 </div>
             @endforelse
 
@@ -248,7 +248,7 @@
 </section>
 
 <section class="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
-  <h2 class="text-2xl font-bold mb-6">Workshop</h2>
+  <h2 class="text-2xl font-bold mb-6">{{ __('app.welcome.workshop') }}</h2>
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       @forelse ($workshopEvents as $event)
@@ -261,7 +261,7 @@
         </div>
       </div>
       @empty
-      <div class="w-full py-10 text-center text-gray-500">Tidak ada workshop saat ini.</div>
+      <div class="w-full py-10 text-center text-gray-500">{{ __('app.welcome.no_workshop') }}</div>
       @endforelse
     </div>
     <div class="swiper-button-next"></div>
@@ -299,7 +299,7 @@
     <!-- HEADER -->
     <div class="flex items-center justify-between mb-6">
         <div class="flex items-center gap-2">
-            <h2 class="text-2xl font-bold">Populer di</h2>
+            <h2 class="text-2xl font-bold">{{ __('app.welcome.popular_in') }}</h2>
             <select x-model="selectedCity" 
                 class="ml-3 bg-transparent text-2xl font-bold text-blue-500 border-none focus:outline-none cursor-pointer">
                 <option value="Jakarta">Jakarta</option>
@@ -336,7 +336,7 @@
             <!-- EMPTY STATE -->
             <template x-if="filteredEvents().length === 0">
                 <div class="w-full py-10 text-center text-gray-500">
-                    Tidak ada event di <span x-text="selectedCity"></span>
+                    {{ __('app.welcome.no_events_in') }} <span x-text="selectedCity"></span>
                 </div>
             </template>
 

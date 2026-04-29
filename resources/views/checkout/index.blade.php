@@ -13,7 +13,7 @@
         <div class="md:col-span-2 bg-white p-6 rounded-xl shadow space-y-6">
 
             <h2 class="text-2xl font-bold border-b pb-4">
-                Metode Pembayaran
+                {{ __('app.checkout.payment_method') }}
             </h2>
 
             <div x-data="{ open: '' }" class="space-y-4">
@@ -26,8 +26,8 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">🏦</div>
                             <div>
-                                <p class="font-bold">Transfer Bank</p>
-                                <p class="text-xs text-gray-500">Virtual Account</p>
+                                <p class="font-bold">{{ __('app.checkout.bank_transfer') }}</p>
+                                <p class="text-xs text-gray-500">{{ __('app.checkout.virtual_account') }}</p>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">📱</div>
                             <div>
-                                <p class="font-bold">E-Wallet</p>
+                                <p class="font-bold">{{ __('app.checkout.ewallet') }}</p>
                                 <p class="text-xs text-gray-500">Gopay, OVO, Dana</p>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">📸</div>
                             <div>
                                 <p class="font-bold">QRIS</p>
-                                <p class="text-xs text-gray-500">Scan QR</p>
+                                <p class="text-xs text-gray-500">{{ __('app.checkout.scan_qr') }}</p>
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
                     </div>
 
                     <div x-show="open === 'qris'" class="px-4 pb-4">
-                        <p class="text-sm text-gray-500">QR akan muncul setelah klik bayar</p>
+                        <p class="text-sm text-gray-500">{{ __('app.checkout.qr_note') }}</p>
                     </div>
                 </div>
 
@@ -104,32 +104,32 @@
         <div class="bg-white p-6 rounded-2xl shadow-lg h-fit sticky top-24">
 
             <h2 class="text-xl font-bold mb-4 border-b pb-3">
-                Checkout
+                {{ __('app.checkout.title') }}
             </h2>
 
             <div class="space-y-4 text-sm">
 
                 <div>
-                    <p class="text-gray-500">Event</p>
+                    <p class="text-gray-500">{{ __('app.checkout.event_label') }}</p>
                     <p class="font-semibold text-gray-800">
                         {{ $title ?? 'Nama Event' }}
                     </p>
                 </div>
 
                 <div class="flex justify-between">
-                    <span class="text-gray-600">Harga</span>
+                    <span class="text-gray-600">{{ __('app.checkout.price_label') }}</span>
                     <span class="font-semibold">
                         Rp {{ number_format($price ?? 0,0,',','.') }}
                     </span>
                 </div>
 
                 <div class="flex justify-between">
-                    <span class="text-gray-600">Biaya Layanan</span>
-                    <span class="text-green-600 font-semibold">Gratis</span>
+                    <span class="text-gray-600">{{ __('app.checkout.service_fee') }}</span>
+                    <span class="text-green-600 font-semibold">{{ __('app.checkout.free') }}</span>
                 </div>
 
                 <div class="border-t pt-4 flex justify-between items-center">
-                    <span class="font-bold text-gray-800">Total</span>
+                    <span class="font-bold text-gray-800">{{ __('app.checkout.total_label') }}</span>
                     <span class="text-xl font-extrabold text-blue-600">
                         Rp {{ number_format($price ?? 0,0,',','.') }}
                     </span>
@@ -138,7 +138,7 @@
             </div>
 
             <button class="mt-6 w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition">
-                Checkout Sekarang
+                {{ __('app.checkout.pay_button') }}
             </button>
 
         </div>

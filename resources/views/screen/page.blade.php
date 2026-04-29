@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screen {{ $detail['title'] ?? 'Tidak ada judul' }}</title>
-
-    @vite('resources/css/app.css')
-</head>
-
-<body class="bg-black text-white">
+<x-app-layout>
 
 @php
 $poster = !empty($detail['poster_path']) 
@@ -20,9 +10,7 @@ $backdrop = !empty($detail['backdrop_path'])
     : $poster;
 @endphp
 
-@include('partials-screen.navbar')
-
-<div class="relative">
+<div class="relative bg-black text-white">
 
     <div class="absolute inset-0 overflow-hidden">
         <img src="{{ $backdrop }}"
@@ -103,9 +91,5 @@ $backdrop = !empty($detail['backdrop_path'])
     </div>
 </section>
 
-<footer class="bg-gray-900 text-center py-6 mt-10 text-gray-400">
-    <p>© 2026 MyEvent</p>
-</footer>
-
-</body>
-</html>
+</div>
+</x-app-layout>

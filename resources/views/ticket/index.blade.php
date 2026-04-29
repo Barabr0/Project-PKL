@@ -4,7 +4,7 @@
 
 <div class="max-w-7xl mx-auto px-4 py-10" x-data="{ tab: 'aktif' }">
 
-    <h1 class="text-2xl font-bold mb-6">Tiket</h1>
+    <h1 class="text-2xl font-bold mb-6">{{ __('app.ticket.title') }}</h1>
 
     {{-- TAB --}}
     <div class="border-b flex space-x-6">
@@ -16,7 +16,7 @@
                 : 'text-gray-500'"
             class="pb-2 transition"
         >
-            Event Aktif
+            {{ __('app.ticket.active_tab') }}
         </button>
 
         <button 
@@ -26,7 +26,7 @@
                 : 'text-gray-500'"
             class="pb-2 transition"
         >
-            Event Tidak Aktif
+            {{ __('app.ticket.inactive_tab') }}
         </button>
 
     </div>
@@ -40,7 +40,7 @@
             @for ($i = 1; $i <= 3; $i++)
             <div class="bg-white rounded-xl shadow p-4">
                 <h3 class="font-semibold">Event Aktif {{$i}}</h3>
-                <p class="text-sm text-gray-500">Status: Aktif</p>
+                <p class="text-sm text-gray-500">Status: {{ __('app.ticket.active_label') }}</p>
             </div>
             @endfor
 
@@ -52,7 +52,7 @@
             @for ($i = 1; $i <= 3; $i++)
             <div class="bg-white rounded-xl shadow p-4 opacity-70">
                 <h3 class="font-semibold">Event Selesai {{$i}}</h3>
-                <p class="text-sm text-gray-500">Status: Tidak Aktif</p>
+                <p class="text-sm text-gray-500">Status: {{ __('app.ticket.inactive_label') }}</p>
             </div>
             @endfor
 
