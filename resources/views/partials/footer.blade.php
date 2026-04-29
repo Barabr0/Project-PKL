@@ -15,7 +15,6 @@
             <ul class="space-y-2 text-sm">
                 <li><a href="{{ route('buat-event') }}" class="hover:text-white">{{ __('app.footer.create_event') }}</a></li>
                 <li><a href="/Jelajah" class="hover:text-white">{{ __('app.footer.find_event') }}</a></li>
-                <li><a href="#" class="hover:text-white">{{ __('app.footer.promo') }}</a></li>
             </ul>
         </div>
 
